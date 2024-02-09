@@ -18,7 +18,7 @@ async function page(searchParams) {
       className="flex min-h-screen flex-col items-center justify-between 
       p-24"
     >
-      <Suspense>
+      <Suspense key={query + currentPage} fallback="">
         <Search />
       </Suspense>
       <div>
