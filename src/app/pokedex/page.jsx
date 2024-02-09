@@ -18,9 +18,8 @@ async function page(searchParams) {
       className="flex min-h-screen flex-col items-center justify-between 
       p-24"
     >
-      <Suspense>
-        <Search />
-      </Suspense>
+      <Search />
+
       <div>
         <Suspense>
           <CardContainer data={data} query={query} currentPage={currentPage} />
