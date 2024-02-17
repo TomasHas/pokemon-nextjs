@@ -1,7 +1,5 @@
-import React from "react";
-
-function page() {
+function Page() {
   return <div>Form</div>;
 }
 
-export default page;
+export default Page;

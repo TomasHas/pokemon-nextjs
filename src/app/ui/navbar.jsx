@@ -4,8 +4,8 @@ import Search from "./search";
 
 function Navbar() {
   return (
-    <div className=" flex flex-row justify-between w-screen bg-yellow-200 h-16">
-      <nav className="flex flex-row justify-evenly w-full">
+    <div className="  flex flex-col items-center justify-center  bg-yellow-200 h-16 w-screen">
+      <nav className=" container flex flex-row items-center justify-between ">
         <Link rel="stylesheet" href="/">
           <h3>Home</h3>
         </Link>
