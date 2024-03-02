@@ -1,10 +1,8 @@
-import React from "react";
 import Link from "next/link";
-import Search from "./search";
 
 function Navbar() {
   return (
-    <div className="  flex flex-col items-center justify-center  bg-yellow-200 h-16 w-screen">
+    <div className="flex flex-row items-center bg-yellow-500 justify-center  h-16 w-screen">
       <nav className=" container flex flex-row items-center justify-between ">
         <Link rel="stylesheet" href="/">
           <h3>Home</h3>

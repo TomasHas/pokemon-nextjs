@@ -1,32 +1,28 @@
-import axios from "axios";
-import { unstable_noStore as noStore } from "next/cache";
+const axios = require("axios");
+// import axios from "axios";
+// import { unstable_noStore as noStore } from "next/cache";s
 
-const ITEMS_PER_PAGE = 4;
-
-export const getData = async (query, currentPage) => {
+//&  API SEED //////////////////////////////////////////////////////////////////
+const getPokemons = async () => {
   const offset = 0;
-  const limit = 20;
-  console.log("offset", offset, "limit", limit);
-  noStore();
+  const limit = 200;
+  // console.log("offset", offset, "limit", limit);
+  // noStore();
   try {
     const pokemonApi = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
     );
-    console.log(pokemonApi.data.results[0]);
-    let data = pokemonApi.data.results
-      .filter((p) => p.name.includes(query))
-      .map(async (p) => {
-        const pokeInfo = await axios.get(p.url);
 
-        return pokeInfo.data;
-      });
-    // console.log("data", data);
-    // data = data.filter((p) => p.name.includes(query));
+    let data = pokemonApi.data.results.map(async (p) => {
+      const pokeInfo = await axios.get(p.url);
+
+      return pokeInfo.data;
+    });
 
     const formattedData = await Promise.all(data);
     const result = formattedData.map((p) => {
       return {
-        id: p.id,
+        number: p.id,
         name: p.name,
         life: p.stats[0].base_stat,
         attack: p.stats[1].base_stat,
@@ -34,11 +30,11 @@ export const getData = async (query, currentPage) => {
         speed: p.stats[5].base_stat,
         height: p.height,
         weight: p.weight,
-        types: p.types.map((pokeType) => pokeType.type.name),
+        // types: p.types?.map((pokeType) => pokeType.type.name),
         image: p.sprites.other.dream_world.front_default,
       };
     });
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (error) {
     console.error("Error fetching Pokemon data:", error);
@@ -46,42 +42,26 @@ export const getData = async (query, currentPage) => {
   }
 };
 
-export const getDataPages = async () => {};
+const getTypes = async () => {
+  try {
+    const typesApi = await axios.get(`https://pokeapi.co/api/v2/type`);
 
-// export const getData = async () => {
-//   try {
-//     // Fetch data from the main Pokemon API endpoint
-//     const pokemonApiResponse = await fetch(
-//       "https://pokeapi.co/api/v2/pokemon?offset=0&limit=100"
-//     );
-//     const pokemonApiData = await pokemonApiResponse.json();
+    let data = typesApi.data.results.map(async (t) => {
+      const typeInfo = await axios.get(t.url);
 
-//     // Map through the results and fetch additional data for each Pokemon
-//     const data = await Promise.all(
-//       pokemonApiData.results.map(async (p) => {
-//         const pokeInfoResponse = await fetch(p.url);
-//         const pokeInfo = await pokeInfoResponse.json();
-//         return pokeInfo;
-//       })
-//     );
+      return typeInfo.data;
+    });
 
-//     // Process the fetched data and format it
-//     const formattedData = data.map((p) => ({
-//       id: p.id,
-//       name: p.name,
-//       life: p.stats[0].base_stat,
-//       attack: p.stats[1].base_stat,
-//       defense: p.stats[2].base_stat,
-//       speed: p.stats[5].base_stat,
-//       height: p.height,
-//       weight: p.weight,
-//       types: p.types.map((pokeType) => pokeType.type.name),
-//       image: p.sprites.other.dream_world.front_default,
-//     }));
+    const formattedData = await Promise.all(data);
+    const result = formattedData.map((t) => {
+      return { number: t.id, name: t.name };
+    });
 
-//     return formattedData;
-//   } catch (error) {
-//     console.error("Error fetching Pokemon data:", error);
-//     throw error;
-//   }
-// };
+    // console.log("types", result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { getPokemons, getTypes };

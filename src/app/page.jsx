@@ -1,11 +1,17 @@
 import Image from "next/image";
 
-import logo from "../../public/pokemon landing.png";
+import logo from "./../assets/pokemon landing.png";
 
 export default async function Page() {
   return (
     <main>
-      <Image src={logo} alt="pokeApi" height={800} width={900} />
+      <Image
+        src={logo}
+        alt="pokeApi"
+        // height={800}
+        // width={900}
+        priority={true}
+      />
     </main>
   );
 }

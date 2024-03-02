@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-function Card({ name, image, type, id }) {
+function Card({ name, image, type, number }) {
   // console.log(typeof id);
 
   return (
@@ -17,7 +17,7 @@ function Card({ name, image, type, id }) {
       </div>
       <div className="flex flex-row justify-between w-full p-4  h-full">
         <div className=" flex flex-col justify-between ">
-          <h3>N.°{id}</h3>
+          <h3>N.°{number}</h3>
           <h2>
             <p>{name}</p>
           </h2>
