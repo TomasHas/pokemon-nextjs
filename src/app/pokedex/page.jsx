@@ -1,6 +1,6 @@
 import CardContainer from "@/app/ui/cardContainer";
 
-import Pagination from "../ui/pagination";
+// import Pagination from "../ui/pagination";
 import { Suspense } from "react";
 import Search from "../ui/search";
 import { CardsSkeleton } from "../ui/skeletons";
@@ -26,7 +26,7 @@ async function Page({ searchParams }) {
         <Suspense fallback={<CardsSkeleton />}>
           <CardContainer query={query} currentPage={currentPage} />
         </Suspense>
-        <Pagination totalPages={totalPages} />
+        {/* <Pagination totalPages={totalPages} /> */}
       </div>
     </div>
   );
