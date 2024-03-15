@@ -1,7 +1,7 @@
 import { CardsSkeleton } from "@/app/ui/skeletons";
 import { Suspense } from "react";
 import { getPokemonById } from "@/app/lib/db";
-import prisma from "@/app/lib/prisma";
+
 import Image from "next/image";
 const detailsStyle =
   " pt-1 pb-1 pr-4 pl-4 rounded-3xl flex flex-row  mt-4 bg-blue-500 justify-between items-end font-bold hover:bg-yellow-400";
