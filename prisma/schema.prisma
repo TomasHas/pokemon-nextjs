@@ -14,50 +14,34 @@ datasource db {
 }
 
 model Pokemon {
-  id        String   @id @default(uuid())
-  number    Int      @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String   @db.VarChar(255)
-  life      Int
-  speed     Int
-  weight    Int
-  height    Int
-  attack    Int
-  defense   Int
-  image     String
-  types     Type[]
+  id      Int    @id @default(autoincrement())
+  number  Int    @unique
+  name    String
+  life    Int
+  attack  Int
+  defense Int
+  speed   Int
+  height  Int
+  weight  Int
+  image   String
+
+  types TypePokemon[]
 }
 
 model Type {
-  id      String    @id @default(uuid())
-  number  Int       @unique
-  name    String
-  pokemon Pokemon[]
+  id     Int    @id @default(autoincrement())
+  name   String
+  number Int    @unique
+
+  pokemon TypePokemon[]
 }
 
-// model Post {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   title     String   @db.VarChar(255)
-//   content   String?
-//   published Boolean  @default(false)
-//   author    User     @relation(fields: [authorId], references: [id])
-//   authorId  Int
-// }
+model TypePokemon {
+  id            Int     @id @default(autoincrement())
+  pokemonNumber Int
+  typeNumber    Int
+  Pokemon       Pokemon @relation(fields: [pokemonNumber], references: [number])
+  Type          Type    @relation(fields: [typeNumber], references: [number])
 
-// model Profile {
-//   id     Int     @id @default(autoincrement())
-//   bio    String?
-//   user   User    @relation(fields: [userId], references: [id])
-//   userId Int     @unique
-// }
-
-// model User {
-//   id      Int      @id @default(autoincrement())
-//   email   String   @unique
-//   name    String?
-//   posts   Post[]
-//   profile Profile?
-// }
+  @@unique([pokemonNumber, typeNumber])
+}

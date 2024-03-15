@@ -30,7 +30,7 @@ const getPokemons = async () => {
         speed: p.stats[5].base_stat,
         height: p.height,
         weight: p.weight,
-        // types: p.types?.map((pokeType) => pokeType.type.name),
+        types: p.types?.map((pokeType) => pokeType.type.name),
         image: p.sprites.other.dream_world.front_default,
       };
     });

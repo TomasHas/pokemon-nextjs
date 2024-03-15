@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-function Card({ name, image, type, number }) {
+function Card({ name, image, type, number, id }) {
   // console.log(typeof id);
 
   return (
@@ -15,12 +15,14 @@ function Card({ name, image, type, number }) {
           className=" h-48 w-46 p-4"
         />
       </div>
-      <div className="flex flex-row justify-between w-full p-4  h-full">
-        <div className=" flex flex-col justify-between ">
-          <h3>N.°{number}</h3>
-          <h2>
-            <p>{name}</p>
-          </h2>
+      <div className="flex flex-row justify-between w-full p-4  h-full ">
+        <div className="flex flex-row">
+          <div className=" flex flex-col justify-between ">
+            <h3>N.°{number}</h3>
+            <h2>
+              <p>{name}</p>
+            </h2>
+          </div>
         </div>
         <div className="  ">
           <ul className="flex flex-col gap-3">
@@ -31,9 +33,11 @@ function Card({ name, image, type, number }) {
             ))}
           </ul>
         </div>
-        {/* <Link to={`/pokemons/${id}`}>
-          <h3>More +</h3>
-        </Link> */}
+        <div className=" flex flex-col justify-end ">
+          <Link href={`/pokedex/${id}`}>
+            <h3 className=" font-bold ">More +</h3>
+          </Link>{" "}
+        </div>
       </div>
     </div>
   );

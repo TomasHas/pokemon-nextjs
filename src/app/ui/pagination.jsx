@@ -3,29 +3,51 @@ import { redirect, usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import clsx from "clsx";
+import { generatePagination } from "../lib/utils";
 
 function Pagination({ totalPages }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
-  // const allPages = generatePagination(currentPage, totalPages);
+  const allPages = generatePagination(currentPage, totalPages);
 
-  const createPageUrl = (pageNumber) => {
+  const createPageURL = (pageNumber) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", pageNumber.toString());
     return `${pathname}?${params.toString()}`;
   };
 
   return (
-    <div className="flex flex-row w-full justify-between">
+    <div className="flex flex-row w-full justify-between ">
       <PaginationArrow
         direction="left"
-        href={createPageUrl(currentPage - 1)}
+        href={createPageURL(currentPage - 1)}
         isDisabled={currentPage <= 1}
       />
+      <div className="flex -space-x-px">
+        {allPages.map((page, index) => {
+          let position; //"first" | "last" | "single" | "middle" | undefined;
+
+          if (index === 0) position = "first";
+          if (index === allPages.length - 1) position = "last";
+          if (allPages.length === 1) position = "single";
+          if (page === "...") position = "middle";
+
+          return (
+            <PaginationNumber
+              key={page}
+              href={createPageURL(page)}
+              page={page}
+              position={position}
+              isActive={currentPage === page}
+            />
+          );
+        })}
+      </div>
+
       <PaginationArrow
         direction="right"
-        href={createPageUrl(currentPage + 1)}
+        href={createPageURL(currentPage + 1)}
         isDisabled={currentPage === totalPages}
       />
     </div>
@@ -34,9 +56,29 @@ function Pagination({ totalPages }) {
 
 export default Pagination;
 
+function PaginationNumber({ page, href, isActive, position }) {
+  const className = clsx(
+    "flex h-10 w-10 items-center justify-center text-sm border",
+    {
+      "rounded-l-md": position === "first" || position === "single",
+      "rounded-r-md": position === "last" || position === "single",
+      "z-10 bg-blue-600 border-blue-600 text-white": isActive,
+      "hover:bg-gray-100": !isActive && position !== "middle",
+      "text-gray-300": position === "middle",
+    }
+  );
+
+  return isActive || position === "middle" ? (
+    <div className={className}>{page}</div>
+  ) : (
+    <Link href={href} className={className}>
+      {page}
+    </Link>
+  );
+}
 const PaginationArrow = ({ href, direction, isDisabled }) => {
   const className = clsx(
-    "flex h-10 w-10 items-center justify-center rounded-md border",
+    "flex h-20 w-20 items-center justify-center rounded-md border",
     {
       "pointer-events-none text-gray-300": isDisabled,
       "hover:bg-gray-100": !isDisabled,
@@ -45,12 +87,7 @@ const PaginationArrow = ({ href, direction, isDisabled }) => {
     }
   );
 
-  const icon =
-    direction === "left" ? (
-      <FiChevronLeft className="w-4" />
-    ) : (
-      <FiChevronRight className="w-4" />
-    );
+  const icon = direction === "left" ? <FiChevronLeft /> : <FiChevronRight c />;
 
   return isDisabled ? (
     <div className={className}>{icon}</div>

@@ -2,10 +2,10 @@ import Link from "next/link";
 
 function Navbar() {
   return (
-    <div className="flex flex-row items-center bg-yellow-500 justify-center  h-16 w-screen">
+    <div className="flex flex-row items-center bg-yellow-500 justify-center  h-16 ">
       <nav className=" container flex flex-row items-center justify-between ">
         <Link rel="stylesheet" href="/">
-          <h3>Home</h3>
+          <h3 className="">Home</h3>
         </Link>
         <Link rel="stylesheet" href="/create">
           <h3>Create Pokemon</h3>

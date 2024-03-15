@@ -2,10 +2,10 @@ import Card from "@/app/ui/card";
 import { Suspense } from "react";
 import { CardsSkeleton } from "./skeletons";
 
-import { getAllPokemons } from "@/app/lib/db";
-const pokemons = await getAllPokemons();
-console.log(pokemons);
-async function CardContainer() {
+import { getFilteredPokemons } from "@/app/lib/db";
+
+async function CardContainer({ query, currentPage }) {
+  const pokemons = await getFilteredPokemons(query, currentPage);
   return (
     <div className=" grid  grid-cols-4  container  w-screen rounded-xl mt-4 mb-4 gap-4 ">
       {pokemons.map((e, i) => (
@@ -16,6 +16,7 @@ async function CardContainer() {
             image={e.image}
             type={e.types}
             number={e.number}
+            id={e.id}
           />
         </Suspense>
       ))}
