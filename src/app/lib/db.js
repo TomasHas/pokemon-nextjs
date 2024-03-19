@@ -1,21 +1,21 @@
 import prisma from "./prisma";
 
 const ITEMS_PER_PAGE = 4;
-export async function getFilteredPokemons(query, currentPage) {
+
+export async function getFilteredPokemons(query, currentPage, number, weight) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE; // Calculate offset
+  // console.log("number", number);
+  // console.log("weight", weight);
+
   const result = await prisma.pokemon.findMany({
     where: { name: { contains: query } },
+
+    orderBy: { number: number },
+    // orderBy: { weight: weight }, // Sorting by name in ascending order
+    // skip: offset, // Skip records for pagination
+    // take: ITEMS_PER_PAGE, // Take only a certain number of records
   });
 
-  // const result = await prisma.pokemon.findMany({ where: { name: query } });
-  // console.log("result", result);
-  // if (currentPage === 1) {
-  //   return result.slice(0, ITEMS_PER_PAGE);
-  // } else {
-  //   return result.slice(
-  //     currentPage - 1 * ITEMS_PER_PAGE,
-  //     currentPage * ITEMS_PER_PAGE
-  //   );
-  // }
   return result;
 }
 
@@ -36,7 +36,7 @@ export async function fetchPokemonPages(query) {
     const count = await prisma.pokemon.count({
       where: { name: { contains: query } },
     });
-    console.log(count);
+    // console.log(count);
     const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
     console.log("totalPages", totalPages);
     return totalPages;
