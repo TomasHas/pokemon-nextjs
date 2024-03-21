@@ -13,15 +13,20 @@ export default function Sort() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const params = new URLSearchParams(searchParams);
 
+  // const params = new URLSearchParams();
+
+  // console.log("searchParams sort", searchParams);
   const handleSort = (e) => {
     e.preventDefault();
     const sortName = e.target.name;
     const sortValue = e.target.value;
+    const newParams = new URLSearchParams();
+    console.log("sort sortName ", sortName);
+    console.log("sort sorValue ", sortValue);
 
-    const newParams = new URLSearchParams(params);
-    newParams.set(sortName, sortValue);
+    newParams.set("name", sortName);
+    newParams.set("value", sortValue);
 
     replace(`${pathname}?${newParams.toString()}`);
   };
@@ -61,8 +66,7 @@ export default function Sort() {
               className=" hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center"
               onClick={(e) => handleSort(e)}
             >
-              {" "}
-              Number ( - )
+              {"  Number ( < ) "}
             </button>
           </li>
           <li>
@@ -74,7 +78,7 @@ export default function Sort() {
               className=" hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center"
               onClick={(e) => handleSort(e)}
             >
-              Number ( + )
+              {"  Number ( > ) "}
             </button>
           </li>
           <li>

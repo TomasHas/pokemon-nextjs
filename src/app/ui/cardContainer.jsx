@@ -4,11 +4,18 @@ import { CardsSkeleton } from "./skeletons";
 
 import { getFilteredPokemons } from "@/app/lib/db";
 
-async function CardContainer({ query, currentPage, sort, filter }) {
-  console.log("cc", sort, filter);
-  const pokemons = await getFilteredPokemons(query, currentPage, sort, filter);
+async function CardContainer({ query, currentPage, sortName, sortValue }) {
+  console.log("cc sortName", sortName);
+  console.log("cc sortValue", sortValue);
+
+  const pokemons = await getFilteredPokemons(
+    query,
+    currentPage,
+    sortName,
+    sortValue
+  );
   return (
-    <div className=" grid  grid-cols-4  container  w-screen rounded-xl mt-4 mb-4 gap-4 ">
+    <div className=" grid  grid-cols-4  container  w-screen rounded-xl mb-10 mt-10 gap-4 ">
       {pokemons.map((e, i) => (
         <Suspense key={i} fallback={<CardsSkeleton />}>
           <Card
