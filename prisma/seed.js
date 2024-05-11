@@ -5,30 +5,9 @@ const prisma = new PrismaClient();
 const main = async () => {
   const apiPokemon = await getPokemons();
   const apiTypes = await getTypes();
-
-  // Create or find existing types
-  try {
-    const createdTypes = await prisma.type.createMany({
-      data: apiTypes.map((t) => ({ name: t.name, number: t.number })),
-      skipDuplicates: true,
-    });
-
-    console.log("Created types:", createdTypes);
-  } catch (error) {
-    console.error("Error creating types:", error);
-  }
-  const allTypes = await prisma.type.findMany();
-  // console.log(allTypes);
-
+  // console.log(apiPokemon);
   try {
     for (let p = 0; p < apiPokemon.length; p++) {
-      const filteredTypes = await apiTypes.filter((t) =>
-        apiPokemon[p].types.includes(t.name)
-      );
-      const types = await filteredTypes.map((t) => {
-        return { typeId: t.number };
-      });
-
       const pokemon = await prisma.pokemon.create({
         data: {
           number: apiPokemon[p].number,
@@ -41,24 +20,17 @@ const main = async () => {
           weight: apiPokemon[p].weight,
 
           image: apiPokemon[p].image,
-          // types: {
-          //   connect: [
-          //     {
-          //       type: {
-          //         connect: {
-          //           id: 101,
-          //         },
-          //       },
-          //     },
-          //     {
-          //       type: {
-          //         connect: {
-          //           id: 102,
-          //         },
-          //       },
-          //     },
-          //   ],
-          // },
+          type: {
+            create: apiPokemon[p].types.map((t) => {
+              return {
+                type: {
+                  connect: {
+                    name: t,
+                  },
+                },
+              };
+            }),
+          },
         },
       });
 

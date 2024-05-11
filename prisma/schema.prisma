@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,40 +8,40 @@ generator client {
 // }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Pokemon {
   id      Int    @id @default(autoincrement())
   number  Int    @unique
-  name    String
+  name    String @unique
   life    Int
+  speed   Int
+  weight  Int
+  height  Int
   attack  Int
   defense Int
-  speed   Int
-  height  Int
-  weight  Int
   image   String
 
-  types TypePokemon[]
+  type TypesOnPokemon[]
 }
 
 model Type {
   id     Int    @id @default(autoincrement())
-  name   String
   number Int    @unique
+  name   String @unique
 
-  pokemon TypePokemon[]
+  pokemon TypesOnPokemon[]
 }
 
-model TypePokemon {
-  id            Int     @id @default(autoincrement())
+model TypesOnPokemon {
+  type       Type @relation(fields: [typeNumber], references: [number])
+  typeNumber Int
+
+  pokemon       Pokemon @relation(fields: [pokemonNumber], references: [number])
   pokemonNumber Int
-  typeNumber    Int
-  Pokemon       Pokemon @relation(fields: [pokemonNumber], references: [number])
-  Type          Type    @relation(fields: [typeNumber], references: [number])
 
   @@unique([pokemonNumber, typeNumber])
 }

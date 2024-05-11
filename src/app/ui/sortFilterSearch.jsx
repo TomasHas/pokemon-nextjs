@@ -5,7 +5,7 @@ import Search from "./search";
 import Filter from "./filter";
 import Sort from "./sort";
 
-export default function SortFilterSearch() {
+export default function SortFilterSearch(types) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   //   const params = new URLSearchParams(searchParams);
@@ -16,9 +16,9 @@ export default function SortFilterSearch() {
     replace(`${pathname}?`);
   };
   return (
-    <div className="container flex flex-row items-center justify-between bg-slate-200 w-screen">
+    <div className=" container flex flex-row items-center justify-between bg-slate-200 w-screen">
       <Search />
-      <Filter />
+      <Filter types={types} />
 
       <Sort />
       <div className="bg-red-200 relative text-center rounded-xl border-none w-40 cursor-pointer">

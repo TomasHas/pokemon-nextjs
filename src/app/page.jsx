@@ -5,7 +5,10 @@ import logo from "./../assets/pokemon landing.png";
 export default async function Page() {
   return (
     <main>
-      <div className=" h-screen ">
+      <div
+        className=" h-screen 
+      "
+      >
         {" "}
         <Image
           src={logo}

@@ -56,8 +56,32 @@ export default function Sort() {
         <ul
           className={`${
             isOpen ? "visible" : "invisible"
-          } absolute flex flex-col items-center top-11 bg-white p-4 rounded-xl w-max`}
+          } absolute flex flex-col items-center top-11 bg-white p-4 max-h-80 rounded-xl w-full`}
         >
+          {/* <li>
+            <button
+              id="alphabetAsc"
+              name="alphabet"
+              value="asc"
+              className=" hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center"
+              onClick={(e) => handleSort(e)}
+            >
+              {" "}
+              Alphabet ( - )   
+            </button>
+          </li>
+          <li>
+            {" "}
+            <button
+              id="alphabetDesc"
+              name="alphabet"
+              value="desc"
+              className=" hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center"
+              onClick={(e) => handleSort(e)}
+            >
+              Alphabet ( + )
+            </button>
+          </li> */}
           <li>
             <button
               id="numberAsc"
@@ -107,7 +131,7 @@ export default function Sort() {
               weight ( - )
             </button>
           </li>
-          <li>
+          {/* <li>
             {" "}
             <button
               id="reset"
@@ -118,7 +142,7 @@ export default function Sort() {
               {" "}
               Reset
             </button>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

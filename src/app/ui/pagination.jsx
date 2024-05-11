@@ -78,7 +78,7 @@ const PaginationArrow = ({ href, direction, isDisabled }) => {
       "ml-2 md:ml-4": direction === "right",
     }
   );
-  const icon = direction === "left" ? <FiChevronLeft /> : <FiChevronRight c />;
+  const icon = direction === "left" ? <FiChevronLeft /> : <FiChevronRight />;
   return isDisabled ? (
     <div className={className}>{icon}</div>
   ) : (

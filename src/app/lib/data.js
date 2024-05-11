@@ -1,6 +1,4 @@
 const axios = require("axios");
-// import axios from "axios";
-// import { unstable_noStore as noStore } from "next/cache";s
 
 //&  API SEED //////////////////////////////////////////////////////////////////
 const getPokemons = async () => {

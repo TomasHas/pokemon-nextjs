@@ -1,3 +1,4 @@
+"use server";
 import prisma from "./prisma";
 
 const ITEMS_PER_PAGE = 4;
@@ -9,33 +10,56 @@ export async function getFilteredPokemons(
   sortValue
 ) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE; // Calculate offset
-  console.log("db sortName", sortName);
-  console.log("db sortvalue", sortValue);
+  // console.log("db sortName", sortName);
+  // console.log("db sortvalue", sortValue);
 
   const orderBy = sortName && sortValue ? { [sortName]: sortValue } : {};
-  const result = await prisma.pokemon.findMany({
-    where: { name: { contains: query } },
-    orderBy,
-    // orderBy: { [sortName]: sortValue },
-    // orderBy: { weight: weight }, // Sorting by name in ascending order
-    skip: offset, // Skip records for pagination
-    take: ITEMS_PER_PAGE, // Take only a certain number of records
-  });
 
-  return result;
+  try {
+    const result = await prisma.pokemon.findMany({
+      where: { name: { contains: query } },
+      orderBy,
+      // orderBy: { [sortName]: sortValue },
+      // orderBy: { weight: weight }, // Sorting by name in ascending order
+      skip: offset, // Skip records for pagination
+      take: ITEMS_PER_PAGE, // Take only a certain number of records
+    });
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getTypes() {
   try {
     const result = await prisma.type.findMany();
     const allTypes = result.map((type) => type.name);
-    // console.log(allTypes);
+    // console.log("allTypes", allTypes);
     return allTypes;
   } catch (error) {
     console.log(error);
   }
 }
 
+export async function getPokemonCount() {
+  try {
+    const count = await prisma.pokemon.count();
+    console.log("pokemonCount", count);
+    return count;
+  } catch (error) {
+    console.error("Database Error:", error);
+  }
+}
+export async function getTypesCount() {
+  try {
+    const count = await prisma.type.count();
+    console.log("", count);
+    return count;
+  } catch (error) {
+    console.error("Database Error:", error);
+  }
+}
 export async function fetchPokemonPages(query) {
   try {
     const count = await prisma.pokemon.count({
@@ -61,26 +85,4 @@ export async function getPokemonById(id) {
   } catch (error) {
     console.log(error);
   }
-}
-
-export async function createPokemon({ pokeSpecs }) {
-  try {
-    const newPokemon = await prisma.pokemon.create({
-      data: {
-        number: pokeSpecs.number,
-        name: pokeSpecs.name,
-        life: pokeSpecs.life,
-        attack: pokeSpecs.attack,
-        defense: pokeSpecs.defense,
-        speed: pokeSpecs.speed,
-        height: pokeSpecs.height,
-        weight: pokeSpecs.weight,
-        types: { connect: pokeSpecs.types.map((typeId) => ({ id: typeId })) },
-        image: pokeSpecs.image,
-      },
-      include: {
-        types: true,
-      },
-    });
-  } catch (error) {}
 }
