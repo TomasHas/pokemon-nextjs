@@ -22,7 +22,7 @@ function Pagination({ totalPages }) {
         href={createPageURL(currentPage - 1)}
         isDisabled={currentPage <= 1}
       />
-      <div className="flex -space-x-px">
+      <div className="flex ">
         {allPages.map((page, index) => {
           let position; //"first" | "last" | "single" | "middle" | undefined;
           if (index === 0) position = "first";
@@ -49,15 +49,16 @@ function Pagination({ totalPages }) {
   );
 }
 export default Pagination;
+
 function PaginationNumber({ page, href, isActive, position }) {
   const className = clsx(
-    "flex h-10 w-10 items-center justify-center text-sm border",
+    "flex h-10 w-10 items-center justify-center text-sm border rounded-md ",
     {
-      "rounded-l-md": position === "first" || position === "single",
-      "rounded-r-md": position === "last" || position === "single",
+      "rounded-md": position === "first" || position === "single",
+      "rounded-md": position === "last" || position === "single",
       "z-10 bg-red-300  text-white": isActive,
-      "hover:bg-red-200": !isActive && position !== "middle",
-      "text-gray-300": position === "middle",
+      "hover:bg-red-200 rounded-md": !isActive && position !== "middle",
+      "text-gray-300 rounded-md": position === "middle",
     }
   );
   return isActive || position === "middle" ? (

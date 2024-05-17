@@ -7,7 +7,7 @@ export default async function Page() {
   const types = await getTypes();
 
   return (
-    <div className=" flex  flex-col items-center justify-center p-4 bg-red-400 ">
+    <div className=" flex  flex-col items-center justify-center p-4  ">
       Create a Pokemon!
       <FullClientPokemonForm />
       {/* <CreatePokemonForm createPokemon={createPokemon} types={types} /> */}

@@ -7,7 +7,10 @@ import zIndex from "@mui/material/styles/zIndex";
 //////////////  THIS WORKS  for TestCreatePokemonForm.jsx///////////////////////////////////
 export async function createPokemon(newPokemon) {
   try {
-    console.log("newPokemon", ...newPokemon.type.map((element, i) => element));
+    // console.log(
+    //   "newPokemon",
+    //   newPokemon.type.map((element, i) => element)
+    // );
     const pokemonCount = await getPokemonCount();
     const result = await prisma.pokemon.create({
       data: {
@@ -19,15 +22,7 @@ export async function createPokemon(newPokemon) {
         weight: parseInt(newPokemon.weight),
         height: parseInt(newPokemon.height),
         speed: parseInt(newPokemon.speed),
-        // type: {
-        //   create: {
-        //     type: {
-        //       connect: {
-        //         name: "fire",
-        //       },
-        //     },
-        //   },
-        // },
+
         type: {
           create: newPokemon.type.map((t) => {
             return {

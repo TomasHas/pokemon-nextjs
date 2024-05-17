@@ -10,7 +10,7 @@ function SelectTypes() {
   useEffect(() => {
     const getAllTypes = async () => {
       const allTypes = await getTypes();
-      console.log("allTypes", allTypes);
+      // console.log("allTypes", allTypes);
       setTypes(allTypes);
     };
     getAllTypes();
@@ -20,7 +20,7 @@ function SelectTypes() {
     e.preventDefault();
     setselectedTypes(e.target.value);
   };
-  console.log(selectedTypes);
+  // console.log(selectedTypes);
   return (
     <div>
       <label className=" capitalize" htmlFor="type">

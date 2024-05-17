@@ -58,7 +58,7 @@ export async function getTypes() {
 export async function getPokemonCount() {
   try {
     const count = await prisma.pokemon.count();
-    console.log("pokemonCount", count);
+    // console.log("pokemonCount", count);
     return count;
   } catch (error) {
     console.error("Database Error:", error);
