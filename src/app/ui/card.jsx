@@ -2,7 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 function Card({ name, image, type, number, id }) {
-  // console.log(typeof id);
+  for (const iterator of type) {
+    console.log(iterator);
+  }
+  console.log(name, Object.entries(type));
+  // const types = type.map((e) => e);
 
   return (
     <div className=" flex flex-col items-center rounded-lg border-solid border-2 border-orange-600  ">
@@ -20,19 +24,20 @@ function Card({ name, image, type, number, id }) {
           <div className=" flex flex-col justify-between ">
             <h3>N.°{number}</h3>
             <h2>
-              <p>{name}</p>
-            </h2>
-          </div>
+              <p className="capitalize">{name}</p>
+            </h2>{" "}
+            <div className="h-10 w-30 bg-pink-600  ">
+              <ul className="flex flex-col gap-3 ">
+                {type?.map((e, i) => (
+                  <li key={i}>
+                    <h3>{e}</h3>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>{" "}
         </div>
-        <div className="  ">
-          <ul className="flex flex-col gap-3">
-            {type?.map((e, i) => (
-              <li key={i}>
-                <h3>{e}</h3>
-              </li>
-            ))}
-          </ul>
-        </div>
+
         <div className=" flex flex-col justify-end ">
           <Link href={`/pokedex/${id}`}>
             <h3 className=" font-bold ">More +</h3>

@@ -17,7 +17,20 @@ export async function getFilteredPokemons(
 
   try {
     const result = await prisma.pokemon.findMany({
-      where: { name: { contains: query } },
+      where: {
+        name: { contains: query },
+      },
+      include: {
+        type: {
+          include: {
+            type: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
+      },
       orderBy,
       // orderBy: { [sortName]: sortValue },
       // orderBy: { weight: weight }, // Sorting by name in ascending order
