@@ -9,7 +9,7 @@ function Card({ name, image, type, number, id }) {
   // const types = type.map((e) => e);
 
   return (
-    <div className=" flex flex-col items-center rounded-lg border-solid border-2 border-orange-600  w-56 bg-yellow-300 p-2 gap-2">
+    <div className=" flex flex-col items-center rounded-lg border-solid border-2 border-orange-600   bg-yellow-300 p-2 gap-2">
       <div className="  h-54 ">
         <Image
           src={image}
@@ -19,14 +19,14 @@ function Card({ name, image, type, number, id }) {
           className=" h-48  p-4 bg-gray-300 rounded-lg "
         />
       </div>
-      <div className="flex flex-row justify-between w-52  ">
+      <div className="flex flex-row justify-between w-full  ">
         <div className=" flex flex-col  w-full  h-20 gap-2">
           <div className=" bg-yellow-200 pl-2">
             <h3>N.°{calculateZeros(number)}</h3>
           </div>
           <div className=" flex flex-row justify-between w-full h-20  pl-2 pr-2 ">
             <div className=" ">
-              <p className="capitalize">{name}</p>
+              <p className="capitalize font-bold ">{name}</p>
             </div>
             <div className="">
               <ul className="flex flex-col capitalize items-center">

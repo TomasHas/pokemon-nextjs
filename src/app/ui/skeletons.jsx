@@ -39,3 +39,32 @@ export function CardsSkeleton() {
     </>
   );
 }
+
+export function CreateSkeleton() {
+  const input = "rounded-md h-8 w-48 bg-gray-300  ";
+  return (
+    <div className="flex flex-row w-3/4 h-96 ">
+      <div className=" flex flex-col bg-gray-200 p-4 w-1/2 gap-2 justify-between">
+        <div className="rounded-md h-8  bg-gray-300 "></div>
+
+        <div className="flex flex-row justify-between w-full">
+          <div className="flex flex-col gap-2">
+            <div className={input}></div>
+            <div className={input}></div>
+            <div className={input}></div>
+            <div className={input}></div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <div className={input}></div>
+            <div className={input}></div>
+            <div className={input}></div>
+            <div className={input}></div>
+          </div>
+        </div>
+        <div className="rounded-md h-8  bg-gray-300 "></div>
+        <div className="rounded-md h-8  bg-gray-300 "></div>
+      </div>
+      <div className=" w-1/2 bg-gray-400"></div>
+    </div>
+  );
+}
