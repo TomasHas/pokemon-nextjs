@@ -101,158 +101,181 @@ function FullClientPokemonForm() {
   };
 
   const inputStyle =
-    "rounded-md h-8 p-2 hover:border-yellow-500 border-2 text-center";
+    "rounded-md h-8 p-2 hover:border-yellow-500 border-2 text-center w-14";
   const errorMessageStyle = "";
-
+  const inputContainerStyle = "flex justify-between";
   console.log(errors);
   return (
     <div className="flex flex-row w-3/4">
-      <div className=" p-4 w-1/2">
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
-          <label className=" capitalize " htmlFor="name">
-            name
-          </label>
-          <input
-            className=" rounded-md h-8 p-2 hover:border-yellow-500 border-2"
-            name="name"
-            value={formData.name}
-            type="text"
-            id="name"
-            onChange={handleChange}
-          />{" "}
-          {errors.name && (
-            <span className=" text-red-500 text-sm">{errors.name}</span>
-          )}
-          <div className="flex flex-row justify-between gap-2">
-            {" "}
-            <div className="flex flex-col ">
-              <label className=" capitalize" htmlFor="life">
-                life
-              </label>
-              <input
-                min={0}
-                type="number"
-                name="life"
-                id="life"
-                onChange={handleChange}
-                className={inputStyle}
-                value={formData.life}
-              />{" "}
-              {errors.life && (
-                <span className=" text-red-500 text-sm">{errors.life}</span>
-              )}
-              <label className=" capitalize" htmlFor="speed">
-                speed
-              </label>
-              <input
-                type="number"
-                name="speed"
-                id="speed"
-                onChange={handleChange}
-                className={inputStyle}
-                value={formData.speed}
-              />
-              {errors.speed && (
-                <span className=" text-red-500 text-sm">{errors.speed}</span>
-              )}
-              <label className=" capitalize" htmlFor="weight">
-                weight
-              </label>
-              <input
-                type="number"
-                name="weight"
-                id="weight"
-                onChange={handleChange}
-                className={inputStyle}
-                value={formData.weight}
-              />{" "}
-              {errors.weight && (
-                <span className=" text-red-500 text-sm">{errors.weight}</span>
-              )}
-            </div>{" "}
-            <div className="flex flex-col w-full">
-              <label className=" capitalize" htmlFor="height">
-                height
-              </label>
-              <input
-                type="number"
-                name="height"
-                id="height"
-                onChange={handleChange}
-                className={inputStyle}
-                value={formData.height}
-              />{" "}
-              {errors.height && (
-                <span className=" text-red-500 text-sm ">{errors.height}</span>
-              )}
-              <label className=" capitalize" htmlFor="defense">
-                defense
-              </label>
-              <input
-                type="number"
-                name="defense"
-                id="defense"
-                onChange={handleChange}
-                className={inputStyle}
-                value={formData.defense}
-              />{" "}
-              {errors.defense && (
-                <span className=" text-red-500 text-sm">{errors.defense}</span>
-              )}
-              <label className=" capitalize" htmlFor="attack">
-                attack
-              </label>
-              <input
-                type="number"
-                name="attack"
-                id="attack"
-                onChange={handleChange}
-                className={inputStyle}
-                value={formData.attack}
-              />{" "}
-              {errors.attack && (
-                <span className=" text-red-500 text-sm">{errors.attack}</span>
-              )}
+      <form className="flex flex-col gap-2 w-full" onSubmit={handleSubmit}>
+        <div className="flex flex-row ">
+          <div className=" p-4 w-1/2">
+            <label className=" capitalize " htmlFor="name">
+              name
+            </label>
+            <input
+              className=" rounded-md h-8 p-2 hover:border-yellow-500 border-2"
+              name="name"
+              value={formData.name}
+              type="text"
+              id="name"
+              onChange={handleChange}
+            />
+            {errors.name && (
+              <span className=" text-red-500 text-sm">{errors.name}</span>
+            )}
+            <div className="flex flex-row  gap-2 justify-between ">
+              <div className="flex flex-col bg-red-500 w-full gap-2">
+                <div className="flex justify-between">
+                  <label className=" capitalize  " htmlFor="life">
+                    life
+                  </label>
+                  <input
+                    min={0}
+                    type="number"
+                    name="life"
+                    id="life"
+                    onChange={handleChange}
+                    className={inputStyle}
+                    value={formData.life}
+                  />
+                  {errors.life && (
+                    <span className=" text-red-500 text-sm">{errors.life}</span>
+                  )}
+                </div>
+                <div className={inputContainerStyle}>
+                  <label className=" capitalize" htmlFor="speed">
+                    speed
+                  </label>
+                  <input
+                    type="number"
+                    name="speed"
+                    id="speed"
+                    onChange={handleChange}
+                    className={inputStyle}
+                    value={formData.speed}
+                  />
+                  {errors.speed && (
+                    <span className=" text-red-500 text-sm">
+                      {errors.speed}
+                    </span>
+                  )}
+                </div>
+                <div className={inputContainerStyle}>
+                  <label className=" capitalize" htmlFor="weight">
+                    weight
+                  </label>
+                  <input
+                    type="number"
+                    name="weight"
+                    id="weight"
+                    onChange={handleChange}
+                    className={inputStyle}
+                    value={formData.weight}
+                  />
+                  {errors.weight && (
+                    <span className=" text-red-500 text-sm">
+                      {errors.weight}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="flex flex-col bg-green-500 w-full gap-2">
+                <div className={inputContainerStyle}>
+                  <label className=" capitalize" htmlFor="height">
+                    height
+                  </label>
+                  <input
+                    type="number"
+                    name="height"
+                    id="height"
+                    onChange={handleChange}
+                    className={inputStyle}
+                    value={formData.height}
+                  />
+                  {errors.height && (
+                    <span className=" text-red-500 text-sm ">
+                      {errors.height}
+                    </span>
+                  )}
+                </div>
+                <div className={inputContainerStyle}>
+                  <label className=" capitalize" htmlFor="defense">
+                    defense
+                  </label>
+                  <input
+                    type="number"
+                    name="defense"
+                    id="defense"
+                    onChange={handleChange}
+                    className={inputStyle}
+                    value={formData.defense}
+                  />
+                  {errors.defense && (
+                    <span className=" text-red-500 text-sm">
+                      {errors.defense}
+                    </span>
+                  )}
+                </div>
+                <div className={inputContainerStyle}>
+                  <label className=" capitalize" htmlFor="attack">
+                    attack
+                  </label>
+                  <input
+                    type="number"
+                    name="attack"
+                    id="attack"
+                    onChange={handleChange}
+                    className={inputStyle}
+                    value={formData.attack}
+                  />
+                  {errors.attack && (
+                    <span className=" text-red-500 text-sm">
+                      {errors.attack}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
+            <label className=" capitalize" htmlFor="types">
+              type
+            </label>
+            <select
+              name="type"
+              id="type"
+              className="rounded-md h-8  hover:border-yellow-500 border-2 text-center"
+              onChange={handleSelectTypes}
+            >
+              {types.map((t) => (
+                <option value={t} key={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+            <label className=" capitalize" htmlFor="image">
+              image
+            </label>
+            <input
+              type="text"
+              name="image"
+              id="image"
+              onChange={handleChange}
+              value={formData.image}
+              className=" rounded-md h-8 p-2 hover:border-yellow-500 border-2"
+            />
+            {errors.image && (
+              <span className=" text-red-500 text-sm">{errors.image}</span>
+            )}
           </div>
-          <label className=" capitalize" htmlFor="types">
-            type
-          </label>
-          <select
-            name="type"
-            id="type"
-            className="rounded-md h-8  hover:border-yellow-500 border-2 text-center"
-            onChange={handleSelectTypes}
-          >
-            {types.map((t) => (
-              <option value={t} key={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-          <label className=" capitalize" htmlFor="image">
-            image
-          </label>
-          <input
-            type="text"
-            name="image"
-            id="image"
-            onChange={handleChange}
-            className={inputStyle}
-            value={formData.image}
-          />{" "}
-          {errors.image && (
-            <span className=" text-red-500 text-sm">{errors.image}</span>
-          )}
-          <button
-            className=" bg-blue-600 hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer text-white"
-            type="submit"
-          >
-            Submit
-          </button>
-        </form>{" "}
-      </div>
-      <div className=" w-1/2 bg-yellow-400"></div>
+          <div className=" w-1/2 bg-yellow-400"></div>
+        </div>
+        <button
+          className=" bg-blue-600 hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer text-white"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
 }
