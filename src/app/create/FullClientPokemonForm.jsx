@@ -106,13 +106,10 @@ function FullClientPokemonForm() {
   const inputContainerStyle = "flex  flex-col justify-between";
   console.log(formData.type);
   return (
-    <div className="flex flex-col md:w-3/4  bg-blue-500 h-auto ">
+    <div className="flex flex-col md:w-3/4  h-auto ">
       <form className="flex flex-col gap-2 h-screen   " onSubmit={handleSubmit}>
         <div className="flex flex-col gap-2 p-4 md:flex-row ">
-          <div className=" flex flex-col md:w-1/2  bg-green-500 gap-2">
-            <div className="flex  bg-yellow-400">
-              <SelectTypes handleChange={handleSelectChange} />
-            </div>
+          <div className=" flex flex-col md:w-1/2  gap-2">
             <Input
               name={"name"}
               value={formData.name}
@@ -123,7 +120,10 @@ function FullClientPokemonForm() {
             />{" "}
             {errors.name && (
               <span className={errorMessageStyle}>{errors.name}</span>
-            )}
+            )}{" "}
+            <div className="flex ">
+              <SelectTypes handleChange={handleSelectChange} />
+            </div>
             <Input
               name={"life"}
               value={formData.life}
@@ -215,6 +215,10 @@ function FullClientPokemonForm() {
                 {formData.name}
               </div>{" "}
               <div className="flex flex-row gap-2">
+                <div>Type</div>
+                {formData.type}
+              </div>{" "}
+              <div className="flex flex-row gap-2">
                 <div>Life</div>
                 {formData.life}
               </div>
@@ -222,14 +226,14 @@ function FullClientPokemonForm() {
                 <div>Speed</div>
                 <div className={`h-6 w-${formData.speed} bg-red-500 `}></div>
                 {formData.speed}
+              </div>{" "}
+              <div className="flex flex-row gap-2">
+                <div>Defense</div>
+                {formData.defense}
               </div>
               <div className="flex flex-row gap-2">
                 <div>Attack</div>
                 {formData.attack}
-              </div>
-              <div className="flex flex-row gap-2">
-                <div>Defense</div>
-                {formData.defense}
               </div>
               <div className="flex flex-row gap-2">
                 <div>Weight</div>
@@ -245,7 +249,14 @@ function FullClientPokemonForm() {
                 width={40}
                 height={40}
               /> */}
-              <img src={formData?.image} alt={formData.name} />
+              <div className=" border-yellow-700 bg-yellow-300 h-36 w-36">
+                <img
+                  src={formData?.image}
+                  alt={formData.name}
+                  height={40}
+                  weight={40}
+                />
+              </div>
             </div>
           </div>
         </div>
