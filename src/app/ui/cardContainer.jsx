@@ -9,7 +9,7 @@ async function CardContainer({
   currentPage,
   sortName,
   sortValue,
-  filterValue,
+  filterType,
 }) {
   // console.log("cc sortName", sortName);
   // console.log("cc sortValue", sortValue);
@@ -19,7 +19,7 @@ async function CardContainer({
     currentPage,
     sortName,
     sortValue,
-    filterValue
+    filterType
   );
   // const types = pokemons.map((e, i) => e.type.map((e) => e.type.name));
   // console.log('types',types);

@@ -11,7 +11,7 @@ import SortFilterSearch from "../ui/sortFilterSearch";
 export default async function Page({ searchParams }) {
   const sortName = searchParams?.name || "";
   const sortValue = searchParams?.value || "";
-  const type = searchParams?.type || "";
+  const filterType = searchParams?.type || "";
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
   const totalPages = await fetchPokemonPages(query);
@@ -35,7 +35,7 @@ export default async function Page({ searchParams }) {
             currentPage={currentPage}
             sortValue={sortValue}
             sortName={sortName}
-            filterValue={type}
+            filterType={filterType}
           />
         </Suspense>
         <Pagination totalPages={totalPages} />

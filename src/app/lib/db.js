@@ -8,14 +8,14 @@ const ITEMS_PER_PAGE = 4;
 //   currentPage,
 //   sortName,
 //   sortValue,
-//   filterValue
+//   filterType
 // ) {
 //   const offset = (currentPage - 1) * ITEMS_PER_PAGE; // Calculate offset
 //   // console.log("db sortName", sortName);
 //   // console.log("db sortvalue", sortValue);
 
 //   const orderBy = sortName && sortValue ? { [sortName]: sortValue } : {};
-//   const filterByType = filterValue ? { ["type"]: filterValue } : {};
+//   const filterByType = filterType ? { ["type"]: filterType } : {};
 //   // console.log(orderBy);
 //   console.log(filterByType);
 //   try {
@@ -53,20 +53,37 @@ export async function getFilteredPokemons(
   currentPage,
   sortName,
   sortValue,
-  filterValue
+  filterType
 ) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE; // Calculate offset
   // console.log("db sortName", sortName);
   // console.log("db sortvalue", sortValue);
 
   const orderBy = sortName && sortValue ? { [sortName]: sortValue } : {};
-  const filterByType = filterValue ? { ["type"]: filterValue } : {};
+  const filterByType = filterType ? { ["type"]: filterType } : {};
   // console.log(orderBy);
-  console.log(filterByType);
+  console.log(filterType);
   try {
     const result = await prisma.pokemon.findMany({
       where: {
-        name: { contains: query },
+        AND: [
+          {
+            type: {
+              some: {
+                type: {
+                  name: {
+                    contains: filterType,
+                  },
+                },
+              },
+            },
+          },
+          {
+            name: {
+              contains: query,
+            },
+          },
+        ],
       },
       include: {
         type: {
