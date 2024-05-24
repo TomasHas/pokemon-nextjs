@@ -11,7 +11,7 @@ function Card({ name, image, type, number, id }) {
   return (
     <div className=" flex flex-col items-center rounded-lg border-solid border-2 border-orange-600   bg-yellow-300 p-2 gap-2">
       <div className="  h-54 ">
-        <Image
+        <img
           src={image}
           alt={name}
           width={500}

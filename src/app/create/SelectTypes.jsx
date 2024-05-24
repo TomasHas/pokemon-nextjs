@@ -2,34 +2,44 @@
 import { useEffect, useState } from "react";
 import { getTypes } from "../lib/db.js";
 
-function SelectTypes() {
-  const [types, setTypes] = useState([]);
+function SelectTypes({ handleChange }) {
+  // console.log(handleChange, value);
 
-  const [selectedTypes, setselectedTypes] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState([]);
 
   useEffect(() => {
-    const getAllTypes = async () => {
+    const fetchTypes = async () => {
       const allTypes = await getTypes();
-      // console.log("allTypes", allTypes);
       setTypes(allTypes);
     };
-    getAllTypes();
+    fetchTypes();
   }, []);
 
+  useEffect(() => {
+    handleChange(selectedTypes);
+  }, [selectedTypes]);
+
   const handleSelectTypes = (e) => {
-    e.preventDefault();
-    setselectedTypes(e.target.value);
+    // console.log("handletype value", e.target.value);
+
+    setSelectedTypes([e.target.value]);
   };
-  // console.log(selectedTypes);
+
   return (
-    <div>
-      <label className=" capitalize" htmlFor="type">
-        type
+    <div className="flex w-full flex-row justify-between items-center">
+      <label className="capitalize" htmlFor="types">
+        Type
       </label>
-      <select name="types" id="types">
-        {types.map((t) => (
-          <option value={t} key={t} onClick={handleSelectTypes}>
-            {t}
+      <select
+        onChange={handleSelectTypes}
+        name="type"
+        id="type"
+        className="rounded-md h-8 hover:border-yellow-500 border-2 w-1/2 text-center"
+      >
+        {types.map((type, index) => (
+          <option value={type} key={index}>
+            {type}
           </option>
         ))}
       </select>

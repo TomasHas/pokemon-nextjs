@@ -1,6 +1,6 @@
 // "use client";
 
-import SelectTypes from "./SelectTypes";
+import SelectTypes from "../app/create/SelectTypes";
 
 async function CreatePokemonForm() {
   const createPokemon = async (formData) => {

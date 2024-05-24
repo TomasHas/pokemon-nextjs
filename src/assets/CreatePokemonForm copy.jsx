@@ -1,5 +1,5 @@
 // "use client";
-import { getTypes } from "../lib/db";
+import { getTypes } from "../app/lib/db";
 
 async function CreatePokemonForm() {
   const types = await getTypes();
