@@ -13,7 +13,7 @@ export default async function Page({ params }) {
       <Suspense fallback={<CardsSkeleton />}>
         <div className=" flex flex-row   ">
           <div className=" flex-col items-center flex p-4 w-1/2 h-1/2">
-            <Image
+            <img
               src={pokemon.image}
               alt={pokemon.name}
               width={400}

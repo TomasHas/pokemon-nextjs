@@ -13,16 +13,18 @@ export default function Filter(types) {
   const dropdownRef = useRef(null);
   const type = Object.values(types.types);
   // console.log(type);
-
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
   const handleClick = (e) => {
-    e.preventDefault();
     setIsOpen(!isOpen);
   };
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
       // Close dropdown if click is outside of it
-      console.log(dropdownRef.current);
-      console.log("tomas");
+      // console.log("dropdownRef.current", dropdownRef.current);
+
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
@@ -35,8 +37,18 @@ export default function Filter(types) {
     };
   }, []);
 
-  const handleType = (e) => {
-    e.preventDefault();
+  const handleType = (value) => {
+    console.log("value", value);
+    setTypeChosen(value);
+
+    const filterValue = value;
+    const newParams = new URLSearchParams();
+
+    console.log("filterValue ", filterValue);
+
+    newParams.set("type", filterValue);
+
+    replace(`${pathname}?${newParams.toString()}`);
   };
 
   return (
@@ -56,7 +68,7 @@ export default function Filter(types) {
                 key={i}
                 name={t}
                 value={t}
-                onClick={handleType}
+                onClick={() => handleType(t)}
                 className=" w-24  capitalize hover:bg-yellow-400 hover:w-24 rounded-xl place-items-center p-2 pl-4 pr-4 active:bg-yellow-500 text-center"
               >
                 {t}

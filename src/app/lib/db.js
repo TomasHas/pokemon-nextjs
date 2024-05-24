@@ -3,18 +3,66 @@ import prisma from "./prisma";
 
 const ITEMS_PER_PAGE = 4;
 
+// export async function getFilteredPokemons(
+//   query,
+//   currentPage,
+//   sortName,
+//   sortValue,
+//   filterValue
+// ) {
+//   const offset = (currentPage - 1) * ITEMS_PER_PAGE; // Calculate offset
+//   // console.log("db sortName", sortName);
+//   // console.log("db sortvalue", sortValue);
+
+//   const orderBy = sortName && sortValue ? { [sortName]: sortValue } : {};
+//   const filterByType = filterValue ? { ["type"]: filterValue } : {};
+//   // console.log(orderBy);
+//   console.log(filterByType);
+//   try {
+//     const result = await prisma.pokemon.findMany({
+//       where: {
+//         name: { contains: query },
+//       },
+//       include: {
+//         type: {
+//           include: {
+//             type: {
+//               select: {
+//                 name: true,
+//               },
+//             },
+//           },
+//         },
+//       },
+//       // filterByType,
+//       orderBy,
+//       // orderBy: { [sortName]: sortValue },
+//       // orderBy: { weight: weight }, // Sorting by name in ascending order
+//       skip: offset, // Skip records for pagination
+//       take: ITEMS_PER_PAGE, // Take only a certain number of records
+//     });
+
+//     return result;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
 export async function getFilteredPokemons(
   query,
   currentPage,
   sortName,
-  sortValue
+  sortValue,
+  filterValue
 ) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE; // Calculate offset
   // console.log("db sortName", sortName);
   // console.log("db sortvalue", sortValue);
 
   const orderBy = sortName && sortValue ? { [sortName]: sortValue } : {};
-
+  const filterByType = filterValue ? { ["type"]: filterValue } : {};
+  // console.log(orderBy);
+  console.log(filterByType);
   try {
     const result = await prisma.pokemon.findMany({
       where: {
@@ -31,6 +79,7 @@ export async function getFilteredPokemons(
           },
         },
       },
+      // filterByType,
       orderBy,
       // orderBy: { [sortName]: sortValue },
       // orderBy: { weight: weight }, // Sorting by name in ascending order

@@ -4,7 +4,13 @@ import { CardsSkeleton } from "./skeletons";
 
 import { getFilteredPokemons, getTypes } from "@/app/lib/db";
 
-async function CardContainer({ query, currentPage, sortName, sortValue }) {
+async function CardContainer({
+  query,
+  currentPage,
+  sortName,
+  sortValue,
+  filterValue,
+}) {
   // console.log("cc sortName", sortName);
   // console.log("cc sortValue", sortValue);
 
@@ -12,7 +18,8 @@ async function CardContainer({ query, currentPage, sortName, sortValue }) {
     query,
     currentPage,
     sortName,
-    sortValue
+    sortValue,
+    filterValue
   );
   // const types = pokemons.map((e, i) => e.type.map((e) => e.type.name));
   // console.log('types',types);
