@@ -13,7 +13,7 @@ export default async function Page() {
         <Image
           src={logo}
           alt="pokeApi"
-          height={700}
+          height="auto"
           width={800}
           priority={false}
         />
