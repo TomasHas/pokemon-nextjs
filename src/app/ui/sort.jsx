@@ -37,7 +37,7 @@ export default function Sort() {
     e.preventDefault();
     const sortName = e.target.name;
     const sortValue = e.target.value;
-    const newParams = new URLSearchParams();
+    const newParams = new URLSearchParams(searchParams);
     console.log("sort sortName ", sortName);
     console.log("sort sorValue ", sortValue);
 

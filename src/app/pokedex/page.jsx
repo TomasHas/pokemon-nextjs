@@ -14,7 +14,7 @@ export default async function Page({ searchParams }) {
   const filterType = searchParams?.type || "";
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = await fetchPokemonPages(query);
+  const totalPages = await fetchPokemonPages(query, filterType);
   const types = await getTypes();
   // console.log(types);
   // console.log("page", sortName, ":", sortValue);

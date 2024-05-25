@@ -85,6 +85,7 @@ export async function getFilteredPokemons(
           },
         ],
       },
+      orderBy,
       include: {
         type: {
           include: {
@@ -97,7 +98,7 @@ export async function getFilteredPokemons(
         },
       },
       // filterByType,
-      orderBy,
+      // orderBy,
       // orderBy: { [sortName]: sortValue },
       // orderBy: { weight: weight }, // Sorting by name in ascending order
       skip: offset, // Skip records for pagination
@@ -121,15 +122,30 @@ export async function getTypes() {
   }
 }
 
-export async function getPokemonCount() {
+export async function getPokemonCount(type) {
+  console.log("filterTypecount", filterType);
   try {
-    const count = await prisma.pokemon.count();
-    // console.log("pokemonCount", count);
+    const count = await prisma.pokemon.count({
+      where: {
+        type: {
+          some: {
+            type: {
+              name: {
+                contains: type,
+              },
+            },
+          },
+        },
+      },
+    });
+    console.log("pokemonCount", count);
     return count;
   } catch (error) {
     console.error("Database Error:", error);
   }
 }
+// getPokemonCount("grass");
+
 export async function getTypesCount() {
   try {
     const count = await prisma.type.count();
@@ -139,14 +155,33 @@ export async function getTypesCount() {
     console.error("Database Error:", error);
   }
 }
-export async function fetchPokemonPages(query) {
+export async function fetchPokemonPages(query, filterType) {
   try {
     const count = await prisma.pokemon.count({
-      where: { name: { contains: query } },
+      where: {
+        AND: [
+          {
+            type: {
+              some: {
+                type: {
+                  name: {
+                    contains: filterType,
+                  },
+                },
+              },
+            },
+          },
+          {
+            name: {
+              contains: query,
+            },
+          },
+        ],
+      },
     });
     // console.log(count);
     const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
-    // console.log("totalPages", totalPages);
+    console.log("totalPages", totalPages);
     return totalPages;
   } catch (error) {
     console.error("Database Error:", error);

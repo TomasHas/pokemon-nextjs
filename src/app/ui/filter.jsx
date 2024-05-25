@@ -39,16 +39,23 @@ export default function Filter(types) {
 
   const handleType = (value) => {
     console.log("value", value);
+
     setTypeChosen(value);
 
     const filterValue = value;
-    const newParams = new URLSearchParams();
+    const params = new URLSearchParams(searchParams);
+    params.set("page", "1");
+    if (filterValue) {
+      params.set("type", filterValue);
+    } else {
+      params.delete("type", filterValue);
+    }
 
     console.log("filterValue ", filterValue);
 
-    newParams.set("type", filterValue);
-
-    replace(`${pathname}?${newParams.toString()}`);
+    // params.set("type", filterValue);
+    console.log(pathname);
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (

@@ -22,6 +22,7 @@ export default function Search() {
       params.delete("query");
     }
     // console.log(params.toString());
+    console.log(pathname);
     replace(`${pathname}?${params.toString()}`);
 
     // console.log(term);
