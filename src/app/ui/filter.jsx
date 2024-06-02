@@ -60,7 +60,7 @@ export default function Filter(types) {
 
   return (
     <div ref={dropdownRef} className="relative rounded-xl w-40 cursor-pointer">
-      <div className="flex flex-col gap-2 items-end">
+      <div className="flex flex-col gap-2 items-center bg">
         <div
           onClick={handleClick}
           className="bg-blue-300 p-2 rounded-xl flex flex-col items-center w-full "

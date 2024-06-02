@@ -19,16 +19,11 @@ export default async function Page({ searchParams }) {
   // console.log(types);
   // console.log("page", sortName, ":", sortValue);
   return (
-    <div
-      className="flex min-h-screen flex-col items-center 
-
-      p-4 overflow-hidden"
-    >
+    <div className="flex  flex-col items-center mt-4 overflow-hidden ">
       <div>
         <SortFilterSearch types={types} />
       </div>
-
-      <div>
+      <div className="">
         <Suspense fallback={<CardsSkeleton />}>
           <CardContainer
             query={query}
@@ -38,8 +33,8 @@ export default async function Page({ searchParams }) {
             filterType={filterType}
           />
         </Suspense>
-        <Pagination totalPages={totalPages} />
-      </div>
+      </div>{" "}
+      <Pagination totalPages={totalPages} />
     </div>
   );
 }

@@ -25,20 +25,22 @@ async function CardContainer({
   // console.log('types',types);
 
   return (
-    <div className=" grid  grid-cols-4  container  w-screen rounded-xl mb-10 mt-10 gap-4 ">
-      {pokemons.map((e, i) => (
-        <Suspense key={i} fallback={<CardsSkeleton />}>
-          <Card
-            key={i}
-            name={e.name}
-            image={e.image}
-            // types={pokemons.map((e, i) => e.type.map((e) => e.type.name))}
-            type={e.type.map((e) => e.type.name)}
-            number={e.number}
-            id={e.id}
-          />
-        </Suspense>
-      ))}
+    <div className="">
+      <div className=" grid  lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 container  rounded-xl mb-10 mt-10 gap-4 ">
+        {pokemons.map((e, i) => (
+          <Suspense key={i} fallback={<CardsSkeleton />}>
+            <Card
+              key={i}
+              name={e.name}
+              image={e.image}
+              // types={pokemons.map((e, i) => e.type.map((e) => e.type.name))}
+              type={e.type.map((e) => e.type.name)}
+              number={e.number}
+              id={e.id}
+            />
+          </Suspense>
+        ))}
+      </div>
     </div>
   );
 }

@@ -62,7 +62,7 @@ export async function getFilteredPokemons(
   const orderBy = sortName && sortValue ? { [sortName]: sortValue } : {};
   const filterByType = filterType ? { ["type"]: filterType } : {};
   // console.log(orderBy);
-  console.log(filterType);
+  // console.log(filterType);
   try {
     const result = await prisma.pokemon.findMany({
       where: {
@@ -97,6 +97,7 @@ export async function getFilteredPokemons(
           },
         },
       },
+
       // filterByType,
       // orderBy,
       // orderBy: { [sortName]: sortValue },
@@ -193,8 +194,19 @@ export async function getPokemonById(id) {
   try {
     const pokemon = await prisma.pokemon.findUnique({
       where: { id: parseInt(id) },
+      include: {
+        type: {
+          include: {
+            type: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
+      },
     });
-    console.log(pokemon);
+    // console.log(pokemon);
     return pokemon;
   } catch (error) {
     console.log(error);

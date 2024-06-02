@@ -29,7 +29,7 @@ export default function Search() {
   }, 300);
 
   return (
-    <div className="relative flex  flex-shrink-0">
+    <div className="relative flex  flex-shrink-0 w-40 rounded-xl">
       <label htmlFor="search" className="sr-only">
         Search
       </label>

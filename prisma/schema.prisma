@@ -45,3 +45,10 @@ model TypesOnPokemon {
 
   @@unique([pokemonNumber, typeNumber])
 }
+
+model User { 
+
+  email String @unique
+  password String 
+
+}

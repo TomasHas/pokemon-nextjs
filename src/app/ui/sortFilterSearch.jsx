@@ -16,7 +16,7 @@ export default function SortFilterSearch(types) {
     replace(`${pathname}?`);
   };
   return (
-    <div className=" container flex flex-row items-center justify-between bg-slate-200 w-screen">
+    <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-slate-200 gap-2 ">
       <Search />
       <Filter types={types} />
 

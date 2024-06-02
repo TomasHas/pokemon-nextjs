@@ -2,6 +2,24 @@
 
 import prisma from "./prisma";
 import { getPokemonCount } from "./db";
+import { signIn } from "@/auth";
+import { AuthError } from "next-auth";
+
+export async function authenticate(prevState, formData) {
+  try {
+    await signIn("credentials", formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return "Invalid credentials.";
+        default:
+          return "Something went wrong.";
+      }
+    }
+    throw error;
+  }
+}
 
 //  THIS WORKS  for TestCreatePokemonForm.jsx///////////////////////////////////
 export async function createPokemon(newPokemon) {
@@ -42,6 +60,17 @@ export async function createPokemon(newPokemon) {
   }
 }
 
+export async function createUser(email, password) {
+  try {
+    const result = await prisma.user.create({
+      data: { email: email, password: password },
+    });
+    console.log(email, password);
+    console.log("user created");
+  } catch (error) {
+    console.log(error);
+  }
+}
 ////////////////////////////////////////////////////////////
 
 // export async function createPokemon(formData) {
