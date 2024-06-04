@@ -35,7 +35,11 @@ export const generatePagination = (currentPage, totalPages) => {
 
 export const colorType = (type) => {
   function setColor(color) {
-    return <p className={`${color} rounded-lg pl-2 pr-2 capitalize`}>{type}</p>;
+    return (
+      <p className={`${color} rounded-lg pl-2 pr-2 capitalize text-white`}>
+        {type}
+      </p>
+    );
   }
 
   switch (type) {
