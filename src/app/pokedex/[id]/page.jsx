@@ -41,7 +41,7 @@ export default async function Page({ params }) {
     <div>
       <Suspense fallback={<CardsSkeleton />}>
         <div className=" flex flex-col lg:flex-row  items-center  ">
-          <div className=" flex-col items-center flex bg-slate-400 p-4 w-1/2  gap-5">
+          <div className=" flex-col items-center flex bg-slate-400 p-4 lg:w-1/2 w-full  gap-5">
             <div className="w-full flex flex-col lg:flex-row bg-yellow-300 justify-between items-center gap-4">
               <p className=" text-5xl font-bold capitalize">{pokemon.name}</p>{" "}
               <div className=" flex flex-row gap-2 justify-between items-center font-bold text-2xl hover:bg-yellow-400">
@@ -64,9 +64,23 @@ export default async function Page({ params }) {
           </div>
           <div
             className="
-            p-4 w-1/2"
+            p-4 lg:w-1/2 w-full bg-red-200"
           >
-            <div className=" capitalize w-full flex flex-col gap-4">
+            <div className=" capitalize w-full flex flex-col gap-4 bg-yellow-200">
+              <div className=" items-center pr-4 pl-4 rounded-3xl flex flex-row h-6 w-full bg-gray-300  font-bold hover:bg-yellow-400 ">
+                <div className=" lg:w-[15%] w-[40%]  ">
+                  <p>Life:</p>{" "}
+                </div>{" "}
+                <div className=" lg:w-[75%] w-[60%] flex items-center ">
+                  <div
+                    className="rounded-lg bg-red-500 h-4"
+                    style={calcBar150(pokemon.life)}
+                  ></div>{" "}
+                </div>
+                <div className=" lg:w-[10%] w-[20%] text-right  ">
+                  <p>{pokemon.life}</p>
+                </div>
+              </div>
               <div className=" items-center pr-4 pl-4 rounded-3xl flex flex-row h-6 w-full bg-gray-300  font-bold hover:bg-yellow-400 ">
                 <div className=" lg:w-[15%] w-[40%]  ">
                   <p>Life:</p>{" "}
@@ -111,12 +125,12 @@ export default async function Page({ params }) {
                 </div>
               </div>{" "}
               <div className="  pr-4 pl-4 rounded-3xl flex flex-row h-6  bg-gray-300  font-bold hover:bg-yellow-400 w-full">
-                <div className=" lg:w-[15%] w-[45%] ">
+                <div className=" lg:w-[15%] w-[40%] ">
                   <p>defense:</p>{" "}
                 </div>{" "}
                 <div className=" lg:w-[75%] w-[60%] flex items-center">
                   <div
-                    className="rounded-lg bg-red-500 h-4 "
+                    className=" hover:expandable-div rounded-lg bg-red-500 h-4 "
                     style={calcBar150(pokemon.life)}
                   ></div>{" "}
                 </div>

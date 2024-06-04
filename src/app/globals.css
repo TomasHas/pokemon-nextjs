@@ -52,3 +52,10 @@ body {
     transform: translateY(0);
   }
 }
+
+@layer components {
+  .expandable-div {
+    /* Example background color */
+    transition: width 2.5s ease-in-out;
+  }
+}
