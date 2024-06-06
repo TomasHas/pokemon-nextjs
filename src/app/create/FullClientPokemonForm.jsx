@@ -207,49 +207,19 @@ function FullClientPokemonForm() {
             {errors.image && (
               <span className={errorMessageStyle}>{errors.image}</span>
             )}
+            <div className=" flex flex-row justify-center items-center">
+              <button
+                className=" bg-blue-600 hover:bg-yellow-400 w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer text-white"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
           </div>
-          <div className=" md:w-1/2 h-full p-2 bg-yellow-400">
-            <div>
-              <div className="flex flex-row gap-2">
-                <div>Name</div>
-                {formData.name}
-              </div>{" "}
-              <div className="flex flex-row gap-2">
-                <div>Type</div>
-                {formData.type}
-              </div>{" "}
-              <div className="flex flex-row gap-2">
-                <div>Life</div>
-                {formData.life}
-              </div>
-              <div className="flex flex-row gap-2">
-                <div>Speed</div>
-                <div className={`h-6 w-${formData.speed} bg-red-500 `}></div>
-                {formData.speed}
-              </div>{" "}
-              <div className="flex flex-row gap-2">
-                <div>Defense</div>
-                {formData.defense}
-              </div>
-              <div className="flex flex-row gap-2">
-                <div>Attack</div>
-                {formData.attack}
-              </div>
-              <div className="flex flex-row gap-2">
-                <div>Weight</div>
-                {formData.weight}
-              </div>
-              <div className="flex flex-row gap-2">
-                <div>Height</div>
-                {formData.height}
-              </div>
-              {/* <Image
-                src={formData?.image}
-                alt={formData.name}
-                width={40}
-                height={40}
-              /> */}
-              <div className=" border-yellow-700 bg-yellow-300 h-36 w-36">
+          <div className=" md:w-1/2 h-full  flex flex-row ">
+            <div className=" w-1/2"></div>
+            <div className=" w-1/2 bg-white rounded-lg p-2 h-fit">
+              <div className=" rounded-lg p-4 bg-yellow-300 h-36 w-full">
                 <img
                   src={formData?.image}
                   alt={formData.name}
@@ -257,15 +227,66 @@ function FullClientPokemonForm() {
                   weight={40}
                 />
               </div>
+              <div className=" bg-blue-100">
+                <div className="flex flex-row gap-2 justify-between items-center">
+                  <div>Name</div>
+                  <div className="  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
+                    {formData.name}
+                  </div>
+                </div>{" "}
+                <div className="flex flex-row gap-2 justify-between items-center">
+                  <div>Type</div>
+                  <div className=" text-white   bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
+                    {formData.type}
+                  </div>
+                </div>{" "}
+                <div className="flex flex-row gap-2 justify-between items-center">
+                  <div>Life</div>
+                  <div className=" text-white   bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
+                    {formData.life}
+                  </div>
+                </div>
+                <div className="flex flex-row gap-2 justify-between items-center">
+                  <div>Speed</div>
+                  <div className={`h-6 w-${formData.speed} bg-red-500 `}></div>
+                  <div className="  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
+                    {formData.speed}
+                  </div>
+                </div>{" "}
+                <div className="flex flex-row gap-2 justify-between items-center">
+                  <div>Defense</div>
+                  <div className=" text-white   bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
+                    {formData.defense}
+                  </div>
+                </div>
+                <div className="flex flex-row gap-2 justify-between items-center">
+                  <div>Attack</div>
+                  <div className="  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
+                    {formData.attack}
+                  </div>
+                </div>
+                <div className="flex flex-row gap-2 justify-between items-center">
+                  <div>Weight</div>
+                  <div className="  bg-slate-400 text-white h-5 w-1/2 rounded-md flex justify-center items-center">
+                    {formData.weight}
+                  </div>
+                </div>
+                <div className="flex flex-row gap-2 justify-between items-center">
+                  <div>Height</div>
+                  <div className="  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
+                    {formData.height}
+                  </div>
+                </div>
+                {/* <Image
+                src={formData?.image}
+                alt={formData.name}
+                width={40}
+                height={40}
+              /> */}
+              </div>
             </div>
           </div>
         </div>
-        <button
-          className=" bg-blue-600 hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer text-white"
-          type="submit"
-        >
-          Submit
-        </button>
       </form>
     </div>
   );
