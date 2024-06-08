@@ -14,7 +14,7 @@ export default function Loading() {
         cy="100"
         r="95"
         stroke="black"
-        stroke-width="10"
+        strokeWidth="10"
         fill="white"
       />
 
@@ -26,7 +26,7 @@ export default function Loading() {
    A 95, 95, 0, 0, 1, 100, 5"
         fill="red"
         stroke="black"
-        stroke-width="5"
+        strokeWidth="5"
       />
 
       {/* <!-- Bottom half (white) --> */}
@@ -37,7 +37,7 @@ export default function Loading() {
    A 95, 95, 0, 0, 1, 100, 195"
         fill="white"
         stroke="black"
-        stroke-width="5"
+        strokeWidth="5"
       />
 
       {/* <!-- Middle circle (black outline) --> */}
@@ -46,7 +46,7 @@ export default function Loading() {
         cy="100"
         r="30"
         stroke="black"
-        stroke-width="10"
+        strokeWidth="10"
         fill="white"
       />
 
@@ -57,8 +57,8 @@ export default function Loading() {
 
   return (
     <div className=" flex flex-row justify-center items-center h-screen">
-      <CardsSkeleton />
-      {/* <img src={pokemonBall} alt={pokemonBall} width={500} height={500} /> */}
+      {/* <CardsSkeleton /> */}
+      {pokemonBall}
     </div>
   );
 }
