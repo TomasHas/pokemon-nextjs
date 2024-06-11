@@ -5,16 +5,16 @@ export default function StatItem({ name, number }) {
   };
   return (
     <div className=" items-center pr-4 pl-4 rounded-3xl flex flex-row h-6 w-full bg-gray-300  font-bold hover:bg-yellow-400 ">
-      <div className=" lg:w-[15%] w-[40%]  ">
+      <div className=" lg:w-[35%] w-[40%]  ">
         <p>{name}</p>
       </div>
-      <div className=" lg:w-[75%] w-[60%] flex items-center ">
+      <div className=" lg:w-[45%] w-[60%] flex items-center ">
         <div
-          className="rounded-lg bg-red-500 h-4"
+          className="rounded-lg bg-red-500 h-2"
           style={calcBar150(number)}
         ></div>
       </div>
-      <div className=" lg:w-[10%] w-[20%] text-right  ">
+      <div className=" lg:w-[20%] w-[20%] text-right  ">
         <p>{number}</p>
       </div>
     </div>

@@ -5,6 +5,7 @@ import SelectTypes from "./SelectTypes.jsx";
 import Input from "./Input.jsx";
 import { createPokemon } from "../lib/actions.js";
 import Image from "next/image.js";
+import PreviewCreate from "./PreviewCreate.jsx";
 function FullClientPokemonForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -90,6 +91,7 @@ function FullClientPokemonForm() {
     }
   };
   console.log("formData.length", formData.type.length);
+
   const handleSelectChange = (value) => {
     console.log("handletypes", value);
     // setelectedTypes(e.target.value);
@@ -108,8 +110,8 @@ function FullClientPokemonForm() {
   return (
     <div className="flex flex-col md:w-3/4  h-auto ">
       <form className="flex flex-col gap-2 h-screen   " onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-2 p-4 md:flex-row ">
-          <div className=" flex flex-col md:w-1/2  gap-2">
+        <div className="flex flex-col items-center justify-center gap-2 p-4 bg-red-500 lg:flex-row lg:justify-between ">
+          <div className=" flex flex-col  gap-2 bg-blue-500 lg:w-1/2">
             <Input
               name={"name"}
               value={formData.name}
@@ -214,77 +216,19 @@ function FullClientPokemonForm() {
               >
                 Submit
               </button>
-            </div>
+            </div>{" "}
           </div>
-          <div className=" md:w-1/2 h-full  flex flex-row ">
-            <div className=" w-1/2"></div>
-            <div className=" w-1/2 bg-white rounded-lg p-2 h-fit">
-              <div className=" rounded-lg p-4 bg-yellow-300 h-36 w-full">
-                <img
-                  src={formData?.image}
-                  alt={formData.name}
-                  height={40}
-                  weight={40}
-                />
-              </div>
-              <div className=" bg-blue-100">
-                <div className="flex flex-row gap-2 justify-between items-center">
-                  <div>Name</div>
-                  <div className="  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
-                    {formData.name}
-                  </div>
-                </div>{" "}
-                <div className="flex flex-row gap-2 justify-between items-center">
-                  <div>Type</div>
-                  <div className=" text-white   bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
-                    {formData.type}
-                  </div>
-                </div>{" "}
-                <div className="flex flex-row gap-2 justify-between items-center">
-                  <div>Life</div>
-                  <div className=" text-white   bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
-                    {formData.life}
-                  </div>
-                </div>
-                <div className="flex flex-row gap-2 justify-between items-center">
-                  <div>Speed</div>
-                  <div className={`h-6 w-${formData.speed} bg-red-500 `}></div>
-                  <div className="  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
-                    {formData.speed}
-                  </div>
-                </div>{" "}
-                <div className="flex flex-row gap-2 justify-between items-center">
-                  <div>Defense</div>
-                  <div className=" text-white   bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
-                    {formData.defense}
-                  </div>
-                </div>
-                <div className="flex flex-row gap-2 justify-between items-center">
-                  <div>Attack</div>
-                  <div className="  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
-                    {formData.attack}
-                  </div>
-                </div>
-                <div className="flex flex-row gap-2 justify-between items-center">
-                  <div>Weight</div>
-                  <div className="  bg-slate-400 text-white h-5 w-1/2 rounded-md flex justify-center items-center">
-                    {formData.weight}
-                  </div>
-                </div>
-                <div className="flex flex-row gap-2 justify-between items-center">
-                  <div>Height</div>
-                  <div className="  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center">
-                    {formData.height}
-                  </div>
-                </div>
-                {/* <Image
-                src={formData?.image}
-                alt={formData.name}
-                width={40}
-                height={40}
-              /> */}
-              </div>
-            </div>
+          <div>
+            <PreviewCreate
+              name={formData.name}
+              speed={formData.speed}
+              life={formData.life}
+              attack={formData.attack}
+              defense={formData.defense}
+              height={formData.height}
+              weight={formData.weight}
+              type={formData.type}
+            />
           </div>
         </div>
       </form>
