@@ -6,7 +6,7 @@ import logo from "./../assets/pokemon landing.png";
 export default async function Page() {
   return (
     <main>
-      <div className=" h-screen w-full transform hover:translate-x-2 hover:overflow-x-hidden">
+      <div className=" h-screen w-full bg-yellow-400 ">
         {" "}
         <Image
           src={logo}

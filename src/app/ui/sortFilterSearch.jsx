@@ -16,14 +16,14 @@ export default function SortFilterSearch(types) {
     replace(`${pathname}?`);
   };
   return (
-    <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-slate-200 gap-2 ">
+    <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 ">
       <Search />
       <Filter types={types} />
 
       <Sort />
-      <div className="bg-red-200 relative text-center rounded-xl border-none w-40 cursor-pointer">
+      <div className="bg-red-200 relative text-center rounded-xl  w-40 cursor-pointer hover:bg-red-300 hover:border-white  hover:font-bold active:bg-red-600 active:text-white">
         <button
-          className=" hover:bg-red-300  w- full hover:w-full rounded-xl place-items-center p-2 active:bg-red-400 text-center"
+          className=" w- full hover:w-full rounded-xl place-items-center p-2 text-center"
           onClick={(e) => handleReset(e)}
         >
           Reset

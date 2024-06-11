@@ -7,19 +7,14 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       keyframes: {
-        slideIn: {
-          "0%": { transform: "translateX(-100%)", opacity: 0 },
-          "100%": { transform: "translateX(0)", opacity: 1 },
+        expand: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
         },
       },
       animation: {
-        slideIn: "slideIn 1s ease-out forwards",
+        expand: "expand 3s ease-out forwards",
       },
     },
   },

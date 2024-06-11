@@ -1,8 +1,4 @@
-import { CardsSkeleton } from "@/app/ui/skeletons";
-
-export default function Loading() {
-  const pokemonBall = (
-    <svg
+ <svg
       width="200"
       height="200"
       viewBox="0 0 200 200"
@@ -53,13 +49,3 @@ export default function Loading() {
       {/* <!-- Inner circle (black) --> */}
       <circle cx="100" cy="100" r="20" fill="black" />
     </svg>
-  );
-
-  return (
-    <div className=" flex flex-row justify-around items-center h-screen gap-0 w-1/2">
-      {/* <CardsSkeleton /> */}
-      <div className="animate-spin ">{pokemonBall} </div>{" "}
-      <p className="ml-40">Loading...</p>
-    </div>
-  );
-}

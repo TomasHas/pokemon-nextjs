@@ -10,7 +10,7 @@ function Card({ name, image, type, number, id }) {
   // const types = type.map((e) => e);
 
   return (
-    <div className="  h-fit w-56 flex flex-col items-center rounded-lg border-solid border-2   bg-yellow-300 p-2 gap-2   hover:border-red-500  transform hover:-translate-y-2 duration-200">
+    <div className="  h-fit w-56 flex flex-col items-center rounded-lg border-solid border-2   bg-white p-2 gap-2   hover:border-red-500  transform hover:-translate-y-2 duration-200">
       <div className=" ">
         <Link href={`/pokedex/${id}`}>
           <img
