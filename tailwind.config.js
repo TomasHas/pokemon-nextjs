@@ -8,15 +8,15 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        expand: {
-          "0%": { width: "0%" },
-          "100%": { width: "100%" },
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
         },
       },
       animation: {
-        expand: "expand 3s ease-out forwards",
+        shimmer: "shimmer 2s infinite",
       },
     },
   },
+  variants: {},
   plugins: [],
 };

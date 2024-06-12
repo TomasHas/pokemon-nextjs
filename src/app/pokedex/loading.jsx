@@ -3,8 +3,8 @@ import { CardsSkeleton } from "@/app/ui/skeletons";
 export default function Loading() {
   const pokemonBall = (
     <svg
-      width="200"
-      height="200"
+      width="20"
+      height="20"
       viewBox="0 0 200 200"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -56,10 +56,15 @@ export default function Loading() {
   );
 
   return (
-    <div className=" flex flex-row justify-around items-center h-screen gap-0 w-1/2">
+    <div className=" flex flex-row justify-center items-center h-screen gap-0 w-1/2">
       {/* <CardsSkeleton /> */}
-      <div className="animate-spin ">{pokemonBall} </div>{" "}
-      <p className="ml-40">Loading...</p>
+      <div
+        className="animate-spin h-30 w-30
+      "
+      >
+        {pokemonBall}
+      </div>
+      <p className="ml-4">Loading...</p>
     </div>
   );
 }

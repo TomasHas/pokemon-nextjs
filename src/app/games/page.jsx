@@ -1,8 +1,9 @@
+import TicTacToe from "./TicTacToe";
 export default function Page() {
   return (
     <div>
-      Games
-      <div></div>
+      <h1>Games</h1>
+      <TicTacToe />
     </div>
   );
 }

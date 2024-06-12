@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { CardsSkeleton } from "@/app/ui/skeletons";
+import { IdSkeleton } from "@/app/ui/skeletons";
 import { Suspense } from "react";
 import { getPokemonById } from "@/app/lib/db";
 import { colorType } from "@/app/lib/utils";
@@ -16,7 +16,7 @@ export default async function Page({ params }) {
 
   return (
     <div className=" flex flex-col  items-center justify-center  ">
-      <Suspense fallback={<CardsSkeleton />}>
+      <Suspense fallback={<IdSkeleton />}>
         <div className=" flex flex-col items-center gap-5 mt-10  w-full lg:w-1/2 ">
           <section className="w-full">
             {" "}

@@ -110,8 +110,8 @@ function FullClientPokemonForm() {
   return (
     <div className="flex flex-col md:w-3/4  h-auto ">
       <form className="flex flex-col gap-2 h-screen   " onSubmit={handleSubmit}>
-        <div className="flex flex-col items-center justify-center gap-2 p-4 bg-red-500 lg:flex-row lg:justify-between ">
-          <div className=" flex flex-col  gap-2 bg-blue-500 lg:w-1/2">
+        <div className="flex flex-col items-center justify-center gap-2 p-4  lg:flex-row lg:justify-between ">
+          <div className=" flex flex-col  gap-2 rounded-xl border-2 border-red-600  p-6  lg:w-1/2">
             <Input
               name={"name"}
               value={formData.name}

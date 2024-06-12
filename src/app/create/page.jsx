@@ -1,6 +1,5 @@
 import FullClientPokemonForm from "./FullClientPokemonForm";
-import CreatePokemonForm from "../../assets/CreatePokemonForm";
-import { createPokemon } from "../lib/actions.js";
+import { CreateSkeleton } from "../ui/skeletons";
 import { getTypes } from "../lib/db";
 
 export default async function Page() {
