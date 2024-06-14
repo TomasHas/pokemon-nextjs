@@ -2,13 +2,13 @@ import Link from "next/link";
 import { CgMenuRound } from "react-icons/cg";
 function Navbar() {
   const navbarItemStyles =
-    " flex flex-row hover:-transition duration-700 hover:text-white items-center justify-center w-full text-center    lg:h-16  ";
+    " flex flex-row hover:text-white hover:-transition duration-200  items-center justify-center w-full text-center    lg:h-16  ";
 
   return (
     <div className="flex flex-row items-center bg-white justify-center p-2  lg:h-16 ">
       <nav className=" container flex flex-col md:flex-row items-center justify-between ">
         {/* <CgMenuRound className=" h-10 w-10" />{" "} */}
-        <div className="flex flex-row items-center justify-center w-full text-center hover:bg-yellow-400 lg:h-16 hover:-transition duration-400 ">
+        <div className="flex flex-row items-center justify-center w-full text-center hover:bg-yellow-400 lg:h-16 hover:-transition duration-100 ">
           <Link rel="stylesheet" href="/">
             <h3 className="">Home</h3>
           </Link>

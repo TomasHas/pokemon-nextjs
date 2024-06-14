@@ -94,3 +94,42 @@ export const colorType = (type) => {
       return setColor("bg-gray-200"); // Default color if type is not matched
   }
 };
+
+export function TicTacToeCalculator(squares, currentPlayer) {
+  const playerOne = [];
+  const playerTwo = [];
+  console.log(currentPlayer);
+  Object.keys(squares).map((key) => {
+    if (squares[key].user === "player one") {
+      playerOne.push(squares[key].square);
+    } else if (squares[key].user === "player two") {
+      playerTwo.push(squares[key].square);
+    }
+  });
+
+  function calculateWinner(player) {
+    if (player.includes(1) && player.includes(3) && player.includes(2))
+      console.log(currentPlayer, "wins!!!");
+    if (player.includes(4) && player.includes(5) && player.includes(6))
+      console.log(currentPlayer, "wins!!!");
+    if (player.includes(7) && player.includes(8) && player.includes(9))
+      console.log(currentPlayer, "wins!!!");
+    if (player.includes(1) && player.includes(4) && player.includes(7))
+      console.log(currentPlayer, "wins!!!");
+    if (player.includes(8) && player.includes(5) && player.includes(2))
+      console.log(currentPlayer, "wins!!!");
+    if (player.includes(6) && player.includes(3) && player.includes(9))
+      console.log(currentPlayer, "wins!!!");
+    if (player.includes(1) && player.includes(5) && player.includes(9))
+      console.log(currentPlayer, "wins!!!");
+    if (player.includes(7) && player.includes(3) && player.includes(5))
+      console.log(currentPlayer, "wins!!!");
+    if (player.includes(1) && player.includes(3) && player.includes(2))
+      console.log(currentPlayer, "wins!!!");
+  }
+
+  console.log(currentPlayer);
+  calculateWinner(playerOne);
+  calculateWinner(playerTwo);
+  console.log(playerOne, playerTwo);
+}

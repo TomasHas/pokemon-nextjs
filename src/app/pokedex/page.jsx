@@ -7,6 +7,7 @@ import { CardsSkeleton } from "../ui/skeletons";
 import { fetchPokemonPages, getTypes } from "../lib/db";
 import Sort from "../ui/sort";
 import SortFilterSearch from "../ui/sortFilterSearch";
+import Loading from "./loading";
 // import FilterType from "../ui/filter";
 export default async function Page({ searchParams }) {
   const sortName = searchParams?.name || "";
@@ -20,6 +21,7 @@ export default async function Page({ searchParams }) {
   // console.log("page", sortName, ":", sortValue);
   return (
     <div className="flex  flex-col items-center mt-4 overflow-hidden ">
+      {/* <Loading /> */}
       <div>
         <SortFilterSearch types={types} />
       </div>
