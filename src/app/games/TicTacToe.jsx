@@ -183,78 +183,76 @@ export default function TicTacToe() {
   };
   console.log(squares);
   return (
-    <Suspense fallback={<Loading />}>
-      <div className="flex flex-row justify-around">
+    <div className="flex flex-row justify-around">
+      {" "}
+      <div
+        className={
+          activePlayer === "player_one"
+            ? " h-10 w-28 text-center  bg-yellow-500"
+            : "h-10 w-28 text-center  bg-gray-500"
+        }
+      >
         {" "}
-        <div
-          className={
-            activePlayer === "player_one"
-              ? " h-10 w-28 text-center  bg-yellow-500"
-              : "h-10 w-28 text-center  bg-gray-500"
-          }
-        >
-          {" "}
-          <p>player one</p>
-        </div>
-        <div className="grid grid-cols-3 gap-3 ">
-          <TicTacToeSquare
-            name="one"
-            value={squares.one.character}
-            handleClick={handleClick}
-            currentPlayer={activePlayer}
-          />{" "}
-          <TicTacToeSquare
-            name="two"
-            value={squares.two.character}
-            handleClick={handleClick}
-          />{" "}
-          <TicTacToeSquare
-            name="three"
-            value={squares.three.character}
-            handleClick={handleClick}
-          />
-          <TicTacToeSquare
-            name="four"
-            value={squares.four.character}
-            handleClick={handleClick}
-          />{" "}
-          <TicTacToeSquare
-            name="five"
-            value={squares.five.character}
-            handleClick={handleClick}
-          />{" "}
-          <TicTacToeSquare
-            name="six"
-            value={squares.six.character}
-            handleClick={handleClick}
-          />{" "}
-          <TicTacToeSquare
-            name="seven"
-            value={squares.seven.character}
-            handleClick={handleClick}
-          />{" "}
-          <TicTacToeSquare
-            name="eight"
-            value={squares.eight.character}
-            handleClick={handleClick}
-          />{" "}
-          <TicTacToeSquare
-            name="nine"
-            value={squares.nine.character}
-            handleClick={handleClick}
-          />
-        </div>{" "}
-        <div
-          className={
-            activePlayer === "player_two"
-              ? " h-10 w-28 text-center  bg-yellow-500"
-              : "h-10 w-28 text-center  bg-gray-500"
-          }
-        >
-          <p>player two</p>
-        </div>
+        <p>player one</p>
       </div>
-    </Suspense>
+      <div className="grid grid-cols-3 gap-3 ">
+        <TicTacToeSquare
+          name="one"
+          value={squares.one.character}
+          handleClick={handleClick}
+          currentPlayer={activePlayer}
+        />{" "}
+        <TicTacToeSquare
+          name="two"
+          value={squares.two.character}
+          handleClick={handleClick}
+        />{" "}
+        <TicTacToeSquare
+          name="three"
+          value={squares.three.character}
+          handleClick={handleClick}
+        />
+        <TicTacToeSquare
+          name="four"
+          value={squares.four.character}
+          handleClick={handleClick}
+        />{" "}
+        <TicTacToeSquare
+          name="five"
+          value={squares.five.character}
+          handleClick={handleClick}
+        />{" "}
+        <TicTacToeSquare
+          name="six"
+          value={squares.six.character}
+          handleClick={handleClick}
+        />{" "}
+        <TicTacToeSquare
+          name="seven"
+          value={squares.seven.character}
+          handleClick={handleClick}
+        />{" "}
+        <TicTacToeSquare
+          name="eight"
+          value={squares.eight.character}
+          handleClick={handleClick}
+        />{" "}
+        <TicTacToeSquare
+          name="nine"
+          value={squares.nine.character}
+          handleClick={handleClick}
+        />
+      </div>{" "}
+      <div
+        className={
+          activePlayer === "player_two"
+            ? " h-10 w-28 text-center  bg-yellow-500"
+            : "h-10 w-28 text-center  bg-gray-500"
+        }
+      >
+        <p>player two</p>
+      </div>
+    </div>
   );
 }
 
