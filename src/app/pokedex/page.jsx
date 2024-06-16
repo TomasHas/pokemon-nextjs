@@ -20,12 +20,12 @@ export default async function Page({ searchParams }) {
   // console.log(types);
   // console.log("page", sortName, ":", sortValue);
   return (
-    <div className="flex  flex-col items-center mt-4 overflow-hidden ">
+    <div className="flex  flex-col items-center mt-4 ">
       {/* <Loading /> */}
       <div>
         <SortFilterSearch types={types} />
       </div>
-      <div className="">
+      <div className=" z-0">
         <Suspense fallback={<CardsSkeleton />}>
           <CardContainer
             query={query}

@@ -70,7 +70,7 @@ export default function Sort() {
         </div>
 
         {isOpen && (
-          <ul className="  absolute flex flex-col items-center top-11 bg-white p-4 max-h-80 rounded-xl w-full">
+          <ul className=" z-50 absolute flex flex-col items-center top-11 bg-white p-4 max-h-80 rounded-xl w-full">
             <li>
               <button
                 id="numberAsc"

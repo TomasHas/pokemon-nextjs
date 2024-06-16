@@ -25,8 +25,8 @@ async function CardContainer({
   // console.log('types',types);
 
   return (
-    <div className="">
-      <div className=" grid  lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 container  rounded-xl mb-10 mt-10 gap-4 ">
+    <div>
+      <div className=" grid  lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 rounded-xl mb-10 mt-10 gap-4 relative">
         {pokemons.map((e, i) => (
           <Suspense key={i} fallback={<CardsSkeleton />}>
             <Card

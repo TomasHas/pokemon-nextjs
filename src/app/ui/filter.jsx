@@ -60,7 +60,7 @@ export default function Filter(types) {
 
   return (
     <div ref={dropdownRef} className="relative rounded-xl w-40 cursor-pointer">
-      <div className="flex flex-col gap-2 items-center bg">
+      <div className="flex flex-col gap-2 items-center ">
         <div
           onClick={handleClick}
           className="bg-blue-300 p-2 rounded-xl flex flex-col items-center w-full "
@@ -69,7 +69,7 @@ export default function Filter(types) {
         </div>
 
         {isOpen && (
-          <ul className="absolute flex flex-col  flex-wrap items-center top-11 bg-white p-4 rounded-xl w-96 max-h-80 ">
+          <ul className=" z-50 absolute flex flex-col  flex-wrap items-center top-11 bg-white p-4 rounded-xl w-96 max-h-80 ">
             {type[0].map((t, i) => (
               <li
                 key={i}

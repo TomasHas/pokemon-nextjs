@@ -110,6 +110,7 @@ export function TicTacToeCalculator(squares, currentPlayer) {
   function calculateWinner(player) {
     if (player.includes(1) && player.includes(3) && player.includes(2))
       console.log(currentPlayer, "wins!!!");
+    return { message: `${currentPlayer} wins!!` };
     if (player.includes(4) && player.includes(5) && player.includes(6))
       console.log(currentPlayer, "wins!!!");
     if (player.includes(7) && player.includes(8) && player.includes(9))

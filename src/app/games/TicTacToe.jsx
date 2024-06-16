@@ -4,14 +4,12 @@ import TicTacToeSquare from "./TicTacToeSquare";
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import Loading from "./loading";
-
+import WinnerModal from "./WinnerModal";
 export default function TicTacToe() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  // const [one, setOne] = useState({ user: "none", character: "" });
-  // const [two, setTwo] = useState({ user: "none", character: "" });
-  // const [three, setThree] = useState({  , character:''});
+  const [open, setOpen] = useState(false);
   const [squares, setSquares] = useState({
     one: { user: "none", character: "", square: 1 },
     two: { user: "none", character: "", square: 2 },
@@ -38,7 +36,9 @@ export default function TicTacToe() {
   const handleSquareChange = () => {
     toggleActivePlayer(activePlayer);
   };
-
+  const toggleModal = () => {
+    setOpen(!open);
+  };
   useEffect(() => {
     handleSquareChange();
     TicTacToeCalculator(squares, activePlayer);
@@ -183,8 +183,13 @@ export default function TicTacToe() {
   };
   console.log(squares);
   return (
-    <div className="flex flex-row justify-around">
-      {" "}
+    <div className=" relative flex flex-row justify-around">
+      <button onClick={toggleModal}>Toggle Modal</button>
+      {open && (
+        <div className="absolute inset-0 flex items-center justify-center ">
+          <WinnerModal toggleModal={toggleModal} />
+        </div>
+      )}
       <div
         className={
           activePlayer === "player_one"
@@ -254,81 +259,4 @@ export default function TicTacToe() {
       </div>
     </div>
   );
-}
-
-// const [one, setSquares] = useState("");
-// const [two, setTwo] = useState("");
-// const [three, setThree] = useState("");
-// const [four, setFour] = useState("");
-// const [five, setFive] = useState("");
-// const [six, setSix] = useState("");
-// const [seven, setSeven] = useState("");
-// const [eight, setEight] = useState("");
-// const [nine, setNine] = useState("");
-
-// const handleClick = (e) => {
-//   e.preventDefault();
-
-//   const square = e.target.name;
-
-//   if (square === "one" && activePlayer) {
-//     console.log("player one", square);
-//     console.log("player one", activePlayer);
-//     console.log("player one", one);
-//     setOne((prev) => ({
-//       ...prev,
-//       character: "x",
-//       user: "player one",
-//     }));
-//   } else if (square === "one" && !activePlayer) {
-//     console.log("player two", square);
-//     console.log("player two", activePlayer);
-//     console.log("player two", one);
-//     setOne((prev) => ({
-//       ...prev,
-//       character: "o",
-//       user: "player two",
-//     }));
-//   }
-
-//   setActivePlayer(!activePlayer);
-// };
-
-// const [four, setFour] = useState({ user: "none" });
-// const [five, setFive] = useState({ user: "none" });
-// const [six, setSix] = useState({ user: "none" });
-// const [seven, setSeven] = useState({ user: "none" });
-// const [eight, setEight] = useState({ user: "none" });
-// const [nine, setNine] = useState({ user: "none" });
-
-{
-  /* <button
-            className={`text-center text-white font-bold text-8xl bg-blue-300 h-40 w-40 hover:bg-red-300`}
-            onClick={handleClick}
-            name="one"
-            value={one.character}
-          >
-            {" "}
-            <p>{one.character}</p>{" "}
-          </button>
-          <button
-            className={`text-center text-white font-bold text-8xl bg-blue-300 h-40 w-40 hover:bg-red-300`}
-            onClick={handleClick}
-            name="two"
-            value={two.character}
-          >
-            {" "}
-            <p>{two.character}</p>{" "}
-          </button> */
-}
-{
-  /* <button
-            className={`text-center text-white font-bold text-8xl bg-blue-300 h-40 w-40 hover:bg-red-300`}
-            onClick={handleClick}
-            name="three"
-            value={three.character}
-          >
-            {" "}
-            <p>{three.character}</p>{" "}
-          </button> */
 }
