@@ -69,7 +69,7 @@ export default function Filter(types) {
         </div>
 
         {isOpen && (
-          <ul className=" z-50 absolute flex flex-col  flex-wrap items-center top-11 bg-white p-4 rounded-xl w-96 max-h-80 ">
+          <ul className=" shadow-lg z-50 absolute flex flex-col  flex-wrap items-center top-11 bg-white p-4 rounded-xl w-96 max-h-80 ">
             {type[0].map((t, i) => (
               <li
                 key={i}
