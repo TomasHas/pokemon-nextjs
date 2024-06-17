@@ -95,10 +95,15 @@ export const colorType = (type) => {
   }
 };
 
-export function TicTacToeCalculator(squares, currentPlayer) {
+export function TicTacToeCalculator(
+  squares,
+  currentPlayer,
+  handleWinner,
+  highlightWinningSquares
+) {
   const playerOne = [];
   const playerTwo = [];
-  console.log(currentPlayer);
+  // console.log(currentPlayer);
   Object.keys(squares).map((key) => {
     if (squares[key].user === "player one") {
       playerOne.push(squares[key].square);
@@ -108,29 +113,50 @@ export function TicTacToeCalculator(squares, currentPlayer) {
   });
 
   function calculateWinner(player) {
-    if (player.includes(1) && player.includes(3) && player.includes(2))
+    if (player.includes(1) && player.includes(3) && player.includes(2)) {
       console.log(currentPlayer, "wins!!!");
-    return { message: `${currentPlayer} wins!!` };
-    if (player.includes(4) && player.includes(5) && player.includes(6))
+      handleWinner(currentPlayer, [1, 2, 3]);
+      highlightWinningSquares([1, 2, 3]);
+    }
+    if (player.includes(4) && player.includes(5) && player.includes(6)) {
       console.log(currentPlayer, "wins!!!");
-    if (player.includes(7) && player.includes(8) && player.includes(9))
+      handleWinner(currentPlayer, [1, 5, 6]);
+      highlightWinningSquares([1, 5, 6]);
+    }
+    if (player.includes(7) && player.includes(8) && player.includes(9)) {
       console.log(currentPlayer, "wins!!!");
-    if (player.includes(1) && player.includes(4) && player.includes(7))
+      handleWinner(currentPlayer, [7, 8, 9]);
+      highlightWinningSquares([7, 8, 9]);
+    }
+    if (player.includes(1) && player.includes(4) && player.includes(7)) {
       console.log(currentPlayer, "wins!!!");
-    if (player.includes(8) && player.includes(5) && player.includes(2))
+      handleWinner(currentPlayer, [1, 4, 7]);
+      highlightWinningSquares([1, 4, 7]);
+    }
+    if (player.includes(8) && player.includes(5) && player.includes(2)) {
       console.log(currentPlayer, "wins!!!");
-    if (player.includes(6) && player.includes(3) && player.includes(9))
+      handleWinner(currentPlayer, [8, 5, 2]);
+      highlightWinningSquares([8, 5, 2]);
+    }
+    if (player.includes(6) && player.includes(3) && player.includes(9)) {
       console.log(currentPlayer, "wins!!!");
-    if (player.includes(1) && player.includes(5) && player.includes(9))
+      handleWinner(currentPlayer, [6, 3, 9]);
+      highlightWinningSquares([6, 3, 9]);
+    }
+    if (player.includes(1) && player.includes(5) && player.includes(9)) {
       console.log(currentPlayer, "wins!!!");
-    if (player.includes(7) && player.includes(3) && player.includes(5))
+      handleWinner(currentPlayer, [1, 5, 9]);
+      highlightWinningSquares([1, 5, 9]);
+    }
+    if (player.includes(7) && player.includes(3) && player.includes(5)) {
       console.log(currentPlayer, "wins!!!");
-    if (player.includes(1) && player.includes(3) && player.includes(2))
-      console.log(currentPlayer, "wins!!!");
+      handleWinner(currentPlayer, [7, 5, 3]);
+      highlightWinningSquares([7, 5, 3]);
+    }
   }
 
-  console.log(currentPlayer);
+  // console.log(currentPlayer);
   calculateWinner(playerOne);
   calculateWinner(playerTwo);
-  console.log(playerOne, playerTwo);
+  // console.log(playerOne, playerTwo);
 }
