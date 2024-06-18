@@ -2,15 +2,10 @@
 import { TicTacToeCalculator } from "../lib/utils";
 import TicTacToeSquare from "./TicTacToeSquare";
 import { Suspense, useEffect, useState } from "react";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import Loading from "./loading";
+import PlayerComp from "./PlayerComp";
 import WinnerModal from "./WinnerModal";
-import { z } from "zod";
 
-export default function TicTacToe() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+export default function TicTacToe({ pokemons }) {
   const [currentPlayer, setCurrentPlayer] = useState("none");
   const [open, setOpen] = useState(false);
   const [winnerData, setWinnerData] = useState({
@@ -18,6 +13,9 @@ export default function TicTacToe() {
     player: "none",
     winningLine: [],
   });
+  const [playerOne, setPlayerOne] = useState({ name: "", image: "" });
+  const [playerTwo, setPlayerTwo] = useState({ name: "", image: "" });
+
   const [squares, setSquares] = useState({
     one: { user: "none", character: "", square: 1 },
     two: { user: "none", character: "", square: 2 },
@@ -29,7 +27,6 @@ export default function TicTacToe() {
     eight: { user: "none", character: "", square: 8 },
     nine: { user: "none", character: "", square: 9 },
   });
-  const params = new URLSearchParams(searchParams);
 
   const toggleModal = () => {
     setOpen(!open);
@@ -212,10 +209,15 @@ export default function TicTacToe() {
 
     // handleSquareChange();
   };
-  // console.log(squares);
 
+  const handleChoosePokemon = (name, image) => {
+    console.log(name);
+    console.log("tomas");
+    setPlayerOne({ ...playerOne, name: { name }, image: { image } });
+  };
+  console.log(playerOne.name);
   return (
-    <div className=" relative flex flex-col ">
+    <div className=" relative flex flex-col  ">
       {" "}
       {/* <button onClick={toggleModal}>Toggle Modal</button> */}
       <div>
@@ -228,16 +230,54 @@ export default function TicTacToe() {
           </div>
         )}
       </div>
-      <div className="  flex flex-row justify-around ">
-        <div
-          className={
-            currentPlayer === "player_one"
-              ? " h-10 w-28 text-center  bg-yellow-500"
-              : "h-10 w-28 text-center  bg-gray-500"
-          }
-        >
-          {" "}
-          <p>player one</p>
+      <div className="  flex flex-row justify-between ">
+        <div className=" flex flex-col items-center gap-4 ">
+          <div className=" flex flex-row items-center bg-red-500 w-full h-40 rounded-xl p-3 justify-around">
+            <div
+              className={
+                currentPlayer === "player_one"
+                  ? " h-10 w-28 flex justify-center items-center bg-yellow-500"
+                  : "h-10 w-28 flex justify-center items-center bg-gray-500"
+              }
+            >
+              <p>player one</p>
+            </div>
+            <div
+              className=" flex flex-col items-center justify-center w-[50%] h-full border-2 border-yellow-50 rounded-xl p-2 
+            "
+            >
+              <p className=" capitalize">{playerOne.name.name}</p>
+              <img
+                src={playerOne?.image.image}
+                alt={playerOne.name.name}
+                height={50}
+                width={50}
+                className=" border-none  "
+              />
+            </div>
+          </div>
+          <ul
+            className="grid grid-cols-4 grid-rows-5 w-full gap-2
+           border-2 border-blue-600 p-4 rounded-xl "
+          >
+            {pokemons.map((p) => (
+              <li
+                key={p.name}
+                className="w-16 h-16 bg-white shadow-md rounded p-4 flex flex-col items-center hover:bg-yellow-400 cursor-pointer"
+                onClick={() => {
+                  handleChoosePokemon(p.name, p.image);
+                }}
+                name={p.name}
+              >
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className=" w-full h-full object-cover"
+                  name={p.name}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="grid grid-cols-3 gap-3 ">
           <TicTacToeSquare
@@ -337,3 +377,7 @@ export default function TicTacToe() {
 // const handleSquareChange = () => {
 //   togglecurrentPlayer(currentPlayer);
 // };
+
+// & refactor the change in color for later
+// const isPlayerOne = currentPlayer === "player_one";
+// const className = `h-10 w-28 flex justify-center items-center ${isPlayerOne ? "bg-yellow-500" : "bg-gray-500"}`;
