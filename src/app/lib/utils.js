@@ -101,15 +101,19 @@ export function TicTacToeCalculator(
   handleWinner,
   highlightWinningSquares
 ) {
-  const playerOne = [];
-  const playerTwo = [];
-  // console.log(currentPlayer);
+  console.log("squares", squares, "currentPlayer", currentPlayer);
+  const playerOneSquares = [];
+  const playerTwoSquares = [];
+  console.log(squares);
   Object.keys(squares).map((key) => {
-    if (squares[key].user === "player one") {
-      playerOne.push(squares[key].square);
-    } else if (squares[key].user === "player two") {
-      playerTwo.push(squares[key].square);
+    console.log("0nj", currentPlayer);
+    if (squares[key].player === "player_one") {
+      playerOneSquares.push(squares[key].square);
+    } else if (squares[key].player === "player_two") {
+      playerTwoSquares.push(squares[key].square);
     }
+    // console.log("playerOneSquares", playerOneSquares);
+    // console.log("playerTwoSquares", playerTwoSquares);
   });
 
   function calculateWinner(player) {
@@ -156,7 +160,7 @@ export function TicTacToeCalculator(
   }
 
   // console.log(currentPlayer);
-  calculateWinner(playerOne);
-  calculateWinner(playerTwo);
+  calculateWinner(playerOneSquares);
+  calculateWinner(playerTwoSquares);
   // console.log(playerOne, playerTwo);
 }
