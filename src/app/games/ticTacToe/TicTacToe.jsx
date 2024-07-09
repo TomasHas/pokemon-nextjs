@@ -1,11 +1,15 @@
 "use client";
-import { TicTacToeCalculator } from "../lib/utils";
+import { TicTacToeCalculator } from "../../lib/utils";
 import TicTacToeSquare from "./TicTacToeSquare";
 import { Suspense, useEffect, useState } from "react";
 import PlayerComp from "./PlayerComp";
 import WinnerModal from "./WinnerModal";
 
 export default function TicTacToe({ pokemons }) {
+  const [gameManager, setGameManager] = useState({
+    stage: "start" || "middle" || "end",
+  });
+  const [isDisabled, setIsDisabled] = useState(true);
   const [currentPlayer, setCurrentPlayer] = useState("player_one");
   const [open, setOpen] = useState(false);
   const [winnerData, setWinnerData] = useState({
@@ -25,7 +29,7 @@ export default function TicTacToe({ pokemons }) {
     image: "",
     player: "",
   });
-  const [gameManager, setgameManager] = useState();
+  console.log(gameManager.stage);
   const [squares, setSquares] = useState({
     one: { pokemon: "none", image: "", square: 1, player: "" },
     two: { pokemon: "none", image: "", square: 2, player: "" },
@@ -92,6 +96,7 @@ export default function TicTacToe({ pokemons }) {
       handleWinner,
       highlightWinningSquares
     );
+    toggleCurrentPlayer(currentPlayer);
   }, [squares]);
 
   const handleFillSquare = (square, curr) => {
@@ -158,7 +163,7 @@ export default function TicTacToe({ pokemons }) {
       default:
         break;
     }
-    toggleCurrentPlayer(currentPlayer);
+    // toggleCurrentPlayer(currentPlayer);
     // handleSquareChange();
   };
 
@@ -200,21 +205,18 @@ export default function TicTacToe({ pokemons }) {
           </div>
         )}
       </div>
-      <div className="  flex flex-row justify-between disabled:opacity-75 ">
+      <div className="  flex flex-row justify-between ">
         <PlayerComp
           player="player_one"
           currentPlayer={currentPlayer}
-          // image={playerOne.image.image}
-          // name={playerOne.name.name}
           pokemons={pokemons}
           assignPokemonToPlayer={assignPokemonToPlayer}
         />
-        <div className="grid grid-cols-3 gap-3 h-fit ">
+        <div className="grid grid-cols-3 gap-3 h-fit enabled:hover:border-gray-400 disabled:opacity-75">
           <TicTacToeSquare
             square="1"
             image={squares.one.image}
             handleClick={handleClick}
-            currentPlayer={currentPlayer}
             winningSquares={winnerData.winningLine}
           />{" "}
           <TicTacToeSquare

@@ -9,10 +9,8 @@ export default function WinnerModal({ toggleModal, player, pokemon, image }) {
       </div>
       <img src={image} alt="" />
       <div className=" ">
-        <p>
-          {" "}
-          {`${player}`} winner!! {pokemon}
-        </p>{" "}
+        <p> {player}</p>
+        <p>{pokemon} WINS!!</p>{" "}
       </div>
       <div className="absolute right-5 bottom-5 capitalize">
         <button className=" capitalize">play again!</button>{" "}
