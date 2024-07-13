@@ -8,6 +8,7 @@ export class Game {
       pokemonName: "",
       pokemonImage: "",
       squares: [],
+      color: "red",
     };
 
     this.playerTwo = {
@@ -15,6 +16,7 @@ export class Game {
       pokemonName: "",
       pokemonImage: "",
       squares: [],
+      color: "blue",
     };
 
     this.activePlayer = this.playerOne;

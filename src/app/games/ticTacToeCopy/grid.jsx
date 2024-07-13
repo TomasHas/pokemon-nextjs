@@ -29,6 +29,9 @@ export default function Grid({ pokemons }) {
   const squares = newGame.current.squares[1]?.pokemonName;
   console.log("squares", squares);
   const currentPlayer = newGame.current.currentPlayer; //& check if needed for somethign
+
+  const squareColor = currentPlayer.player === "playerOne" ? "red" : "blue";
+
   // console.log("currentPlayer", currentPlayer);
   // console.log(currentPlayer.name);
   return (
@@ -59,6 +62,7 @@ export default function Grid({ pokemons }) {
                 image={newGame.current.squares[i]?.pokemonImage}
                 switchPlayer={newGame.current.switchPlayer}
                 calculateWinner={newGame.current.calculateWinner}
+                color={newGame.current.squares[i]?.color}
               />
             );
           })}
