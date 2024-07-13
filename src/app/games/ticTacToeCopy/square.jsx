@@ -1,29 +1,23 @@
+"use client";
 import React, { useState } from "react";
 
-export default function Square({ number, newGame }) {
+export default function Square({
+  number,
+  name,
+  image,
+  playerData,
+  switchPlayer,
+  assignSquare,
+  calculateWinner,
+}) {
   // const [name, setName] = useState("");
   // const [image, setImage] = useState("");
 
-  const togglePlayer = () => {
-    if (newGame.current.curPlayerGET === "playerOne") {
-      newGame.current.curPlayerSET = "playerTwo";
-    } else {
-      newGame.current.curPlayerSET = "playerOne";
-    }
-  };
-  let image = "";
-  let name = "";
   const handleClick = (e) => {
     e.preventDefault();
-    if (newGame.current.curPlayerGET === "playerOne") {
-      newGame.current.p1SquaresSET = number;
-    } else {
-      newGame.current.p2SquaresSET = number;
-    }
-
-    console.log(newGame.current.p1SquaresGET, newGame.current.p2SquaresGET);
-    newGame.current.calculateWinner(newGame.current.curPlayerGET);
-    togglePlayer();
+    assignSquare(number, playerData);
+    switchPlayer();
+    calculateWinner(playerData);
   };
 
   return (

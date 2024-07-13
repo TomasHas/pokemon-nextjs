@@ -1,82 +1,73 @@
 export class Game {
   constructor(_update) {
-    this.currentPlayer = "playerOne"; //active player
-    this.gameStatus = "selectPlayer"; //playing,end
-    this.setPosition;
-    this.squareData = { image: "" };
-    this.playerOne = { pokemonName: "", pokemonImage: "", squares: [] };
-    this.playerTwo = { pokemonName: "", pokemonImage: "", squares: [] };
-    this.squares = [];
+    this.isPlayerOne = true;
+    this.gameStatus = "selectPlayer"; // playing, end
 
+    this.playerOne = {
+      player: "playerOne",
+      pokemonName: "",
+      pokemonImage: "",
+      squares: [],
+    };
+
+    this.playerTwo = {
+      player: "playerTwo",
+      pokemonName: "",
+      pokemonImage: "",
+      squares: [],
+    };
+
+    this.activePlayer = this.playerOne;
+
+    this.squareData = { image: "" };
+    this.squares = Array(9).fill(null);
     this.winner = "none";
     this.winningLine = [];
     this.update = _update;
+    // this.selectCharacter = this.selectCharacter.bind(this);
   }
-
-  get curPlayerGET() {
-    return this.currentPlayer;
+  assignSquare = (number, playerData) => {
+    console.log("playerData.player", playerData);
+    this.squares[number] = playerData;
+    if (playerData.player === "playerOne") {
+      this.playerOne.squares = [...this.playerOne.squares, number + 1];
+    } else {
+      this.playerTwo.squares = [...this.playerTwo.squares, number + 1];
+    }
+    console.log("square", this.squares);
+  };
+  get currentPlayer() {
+    return this.activePlayer;
   }
-  set curPlayerSET(player) {
-    // console.log(player);
-    this.currentPlayer = player;
-  }
-  get p1SquaresGET() {
-    return this.playerOne.squares;
-  }
-
-  set p1SquaresSET(square) {
-    this.playerOne.squares = [...this.playerOne.squares, square];
-  }
-  get p2SquaresGET() {
-    return this.playerTwo.squares;
-  }
-  set p2SquaresSET(square) {
-    this.playerTwo.squares = [...this.playerTwo.squares, square];
-  }
-
-  get p1PokemonNameGET() {
+  get p1Name() {
     return this.playerOne.pokemonName;
   }
-  get p1PokemonImageGET() {
+  get p1Image() {
     return this.playerOne.pokemonImage;
   }
-  set p1PokemonNameSET(name) {
-    this.playerOne.pokemonName = name;
-    this.update();
-  }
-  set p1PokemonImageSET(image) {
-    this.playerOne.pokemonImage = image;
-    this.update();
-  }
-  get p2PokemonNameGET() {
-    return this.playerTwo.pokemonName;
-  }
-  get p2PokemonImageGET() {
-    return this.playerTwo.pokemonImage;
-  }
-  set p2PokemonNameSET(name) {
-    this.playerTwo.pokemonName = name;
-    this.update();
-  }
-  set p2PokemonImageSET(image) {
-    this.playerTwo.pokemonImage = image;
-    this.update();
-  }
-  get winLineGET() {
-    return this.winningLine;
-  }
-  set winLineSET(line) {
-    this.winningLine = line;
-  }
-  get playerWinGET() {
-    return this.winner;
-  }
-  set playerWinSET(win) {
-    this.winner = win;
-  }
 
-  calculateWinner(currPlayer) {
-    console.log(currPlayer);
+  selectCharacter = (name, image, player) => {
+    if (player === "playerOne") {
+      this.playerOne.pokemonName = name;
+      this.playerOne.pokemonImage = image;
+    } else if (player === "playerTwo") {
+      this.playerTwo.pokemonName = name;
+      this.playerTwo.pokemonImage = image;
+    }
+    // console.log(`${name} was selected`);
+    this.update();
+  };
+
+  switchPlayer = () => {
+    this.isPlayerOne
+      ? (this.activePlayer = this.playerTwo)
+      : (this.activePlayer = this.playerOne);
+
+    this.isPlayerOne = !this.isPlayerOne;
+    this.update();
+  };
+
+  calculateWinner = (currPlayer) => {
     let playerSquares = [];
     const arr = [
       [1, 2, 3],
@@ -89,7 +80,7 @@ export class Game {
       [3, 5, 7],
     ];
 
-    if (currPlayer === "playerOne") {
+    if (currPlayer.player === "playerOne") {
       playerSquares = this.playerOne.squares;
     } else {
       playerSquares = this.playerTwo.squares;
@@ -103,20 +94,39 @@ export class Game {
           playerSquares.includes(arr[i][j + 2])
         ) {
           this.winLine = playerSquares;
-          this.playerWin = this.currentPlayer;
+          this.playerWin = this.isPlayerOne; // &fix this
 
-          console.log(this.currentPlayer, "wins!!!");
+          console.log(currPlayer.pokemonName, "wins!!!"); //& and this
         }
       }
     }
-  }
+  };
 
   reset() {
-    this.currentPlayer = "playerOne";
-    this.playerOne = { pokemonName: "", pokemonImage: "", squares: [] };
-    this.playerTwo = { pokemonName: "", pokemonImage: "", squares: [] };
+    this.isPlayerOne = true;
+    this.gameStatus = "selectPlayer"; // playing, end
+
+    this.playerOne = {
+      player: "playerOne",
+      pokemonName: "",
+      pokemonImage: "",
+      squares: [],
+    };
+
+    this.playerTwo = {
+      player: "playerTwo",
+      pokemonName: "",
+      pokemonImage: "",
+      squares: [],
+    };
+
+    this.activePlayer = this.playerOne;
+
+    this.squareData = { image: "" };
+    this.squares = Array(9).fill(null);
     this.winner = "none";
     this.winningLine = [];
+    this.update();
   }
 }
 

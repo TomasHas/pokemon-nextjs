@@ -8,22 +8,29 @@ export default function Grid({ pokemons }) {
   const [state, setState] = useState(true);
   const newGame = useRef(
     new Game(() => {
-      setState((g) => {
-        !g;
-      });
+      setState((prevState) => !prevState);
     })
   );
-  console.log(newGame.current.curPlayerGET);
-
-  console.log(newGame);
 
   const handleReset = (e) => {
     e.preventDefault();
     newGame.current.reset();
     //reset game
-    console.log(newGame);
   };
 
+  const handleState = (e) => {
+    e.preventDefault();
+    setState(!state);
+  };
+  const handleSwitchPlayer = (e) => {
+    e.preventDefault();
+    newGame.current.switchPlayer();
+  };
+  const squares = newGame.current.squares[1]?.pokemonName;
+  console.log("squares", squares);
+  const currentPlayer = newGame.current.currentPlayer; //& check if needed for somethign
+  // console.log("currentPlayer", currentPlayer);
+  // console.log(currentPlayer.name);
   return (
     <div className=" flex flex-row w-screen">
       {" "}
@@ -31,38 +38,30 @@ export default function Grid({ pokemons }) {
         <PlayerSelected
           player="playerOne"
           pokemons={pokemons}
-          newGame={newGame}
+          currentPlayer={currentPlayer.player}
+          selectCharacter={newGame.current.selectCharacter}
+          selectedCharacterName={newGame.current.p1Name}
+          selectedCharacterImage={newGame.current.p1Image}
         />
       </div>
       <div className="flex flex-col items-center">
+        {/* <button onClick={handleState}>toggle state</button> */}
+        {/* <button onClick={handleSwitchPlayer}>toggle player</button> */}
         <div className=" grid grid-cols-3 gap-2 h-fit p-3">
-          <div>
-            <Square number={1} newGame={newGame} />
-          </div>
-          <div>
-            <Square number={2} newGame={newGame} />
-          </div>
-          <div>
-            <Square number={3} newGame={newGame} />
-          </div>
-          <div>
-            <Square number={4} newGame={newGame} />
-          </div>
-          <div>
-            <Square number={5} newGame={newGame} />
-          </div>
-          <div>
-            <Square number={6} newGame={newGame} />
-          </div>
-          <div>
-            <Square number={7} newGame={newGame} />
-          </div>
-          <div>
-            <Square number={8} newGame={newGame} />
-          </div>
-          <div>
-            <Square number={9} newGame={newGame} />
-          </div>
+          {newGame.current.squares.map((_, i) => {
+            return (
+              <Square
+                key={i}
+                number={i}
+                playerData={currentPlayer}
+                assignSquare={newGame.current.assignSquare}
+                name={newGame.current.squares[i]?.pokemonName}
+                image={newGame.current.squares[i]?.pokemonImage}
+                switchPlayer={newGame.current.switchPlayer}
+                calculateWinner={newGame.current.calculateWinner}
+              />
+            );
+          })}
         </div>{" "}
         <button className=" bg-red-500 p-4 rounded-xl" onClick={handleReset}>
           Reset
@@ -72,7 +71,10 @@ export default function Grid({ pokemons }) {
         <PlayerSelected
           player="playerTwo"
           pokemons={pokemons}
-          newGame={newGame}
+          currentPlayer={currentPlayer.player}
+          selectCharacter={newGame.current.selectCharacter}
+          selectedCharacterName={newGame.current.playerTwo.pokemonName}
+          selectedCharacterImage={newGame.current.playerTwo.pokemonImage}
         />
       </div>
     </div>

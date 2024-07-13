@@ -3,64 +3,58 @@
 
 import { useState } from "react";
 function PlayerSelected({
-  newGame,
+  selectedCharacterName,
+  selectedCharacterImage,
 
+  currentPlayer,
   pokemons,
   player,
+  selectCharacter,
 }) {
   const [open, setOpen] = useState(true);
-  // console.log(newGame);
-  const isPlayerOne = newGame.current.currentPlayer === player;
-  let name = "";
-  let image = "";
 
   const handleChoosePokemon = (name, image) => {
     setOpen(false);
 
-    if (isPlayerOne) {
-      newGame.current.p1PokemonNameSET = name;
-      newGame.current.p1PokemonImageSET = image;
-    } else {
-      newGame.current.p2PokemonNameSET = name;
-      newGame.current.p2PokemonImageSET = image;
-    }
+    // console.log("currentPlayer:", currentPlayer, "player:", player);
+    selectCharacter(name, image, player);
   };
   // console.log("currentPlayer", newGame.current.currentPlayer, player);
 
   // console.log("isPlayerOne", isPlayerOne);
-  if (isPlayerOne) {
-    image = newGame.current.p1PokemonImageGET;
-    name = newGame.current.p1PokemonNameGET;
-  } else {
-    image = newGame.current.p2PokemonImageGET;
-    name = newGame.current.p2PokemonNameGET;
-  }
 
-  const className = `h-10 w-28 flex  justify-center items-center rounded-xl ${
-    isPlayerOne ? "bg-white " : "bg-red-300 text-red-200"
-  }`;
+  const activeStyle = ` gap-2 h-20 w-32 flex flex-col justify-around items-center rounded-xl bg-white `;
+  const notActiveStyle = ` gap-2 h-20 w-32 flex flex-col justify-around items-center rounded-xl bg-red-300 text-red-200 `;
 
+  const handleSelect = () => {
+    setOpen(!open);
+  };
+  // console.log("currentPlayer", currentPlayer);
   return (
     <div className=" flex flex-col items-center gap-4 ">
       {/* player component start */}
-      <div className=" flex flex-col items-center bg-red-500 w-40 h-40 rounded-xl p-3 justify-around">
-        <div className={className}>
-          <p>{player}</p> <p>{name}</p>
+      <div className="gap-2 flex flex-col items-center bg-red-500 w-48 h-fit rounded-xl p-3 justify-around">
+        <div
+          className={currentPlayer === player ? activeStyle : notActiveStyle}
+        >
+          <p className=" bg-yellow-300 px-2 py-1  rounded-xl">{player}</p>
+          <p className=" bg-yellow-300">{selectedCharacterName}</p>
         </div>
 
         <div
-          className=" flex flex-col items-center justify-center w-24 h-24  border-2 border-yellow-50 rounded-xl p-2 
+          className=" flex flex-col items-center justify-center w-32 h-32 border-2  rounded-xl p-2 
       "
         >
           {/* <p className=" capitalize ">{name}</p> */}
 
           <img
-            src={image}
+            src={selectedCharacterImage}
             className=" max-w-full max-h-full object-cover"
-            alt={name}
+            alt={selectedCharacterName}
           />
         </div>
       </div>
+      <button onClick={handleSelect}>Select Character</button>
       {open && (
         <ul
           className="grid grid-cols-2 grid-rows-10 w-full gap-2
