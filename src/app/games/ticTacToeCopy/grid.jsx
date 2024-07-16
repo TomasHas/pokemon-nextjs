@@ -1,33 +1,33 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Square from "./square";
 import { Game } from "@/app/lib/games/ticTacToeLogic";
 import PlayerSelected from "./playerSelected";
-
+import WinnerModal from "./WinnerModal";
+import { z } from "zod";
 export default function Grid({ pokemons }) {
   const [state, setState] = useState(true);
+  const [open, setOpen] = useState(false);
   const newGame = useRef(
     new Game(() => {
       setState((prevState) => !prevState);
     })
   );
 
+  const checkStatus = () => {
+    newGame.current.winnerDataGET.status && setOpen(true);
+  };
+
   const handleReset = (e) => {
     e.preventDefault();
     newGame.current.reset();
+    setOpen(false);
     //reset game
   };
+  const toggleModal = () => {
+    setOpen(!open);
+  };
 
-  const handleState = (e) => {
-    e.preventDefault();
-    setState(!state);
-  };
-  const handleSwitchPlayer = (e) => {
-    e.preventDefault();
-    newGame.current.switchPlayer();
-  };
-  const squares = newGame.current.squares[1]?.pokemonName;
-  console.log("squares", squares);
   const currentPlayer = newGame.current.currentPlayer; //& check if needed for somethign
 
   const squareColor = currentPlayer.player === "playerOne" ? "red" : "blue";
@@ -36,7 +36,6 @@ export default function Grid({ pokemons }) {
   // console.log(currentPlayer.name);
   return (
     <div className=" flex flex-row w-screen">
-      {" "}
       <div className="">
         <PlayerSelected
           player="playerOne"
@@ -50,7 +49,17 @@ export default function Grid({ pokemons }) {
       <div className="flex flex-col items-center">
         {/* <button onClick={handleState}>toggle state</button> */}
         {/* <button onClick={handleSwitchPlayer}>toggle player</button> */}
-        <div className=" grid grid-cols-3 gap-2 h-fit p-3">
+        <div className=" relative grid grid-cols-3 gap-2 h-fit p-3">
+          {" "}
+          {open && (
+            <div className=" absolute h-full shadow-2xl rounded-md  w-full ">
+              <WinnerModal
+                toggleModal={toggleModal}
+                playAgain={newGame.current.playAgain}
+                winnerData={newGame.current.winnerDataGET}
+              />
+            </div>
+          )}
           {newGame.current.squares.map((_, i) => {
             return (
               <Square
@@ -63,6 +72,7 @@ export default function Grid({ pokemons }) {
                 switchPlayer={newGame.current.switchPlayer}
                 calculateWinner={newGame.current.calculateWinner}
                 color={newGame.current.squares[i]?.color}
+                checkStatus={checkStatus}
               />
             );
           })}
@@ -84,3 +94,12 @@ export default function Grid({ pokemons }) {
     </div>
   );
 }
+
+// const handleState = (e) => {
+//   e.preventDefault();
+//   setState(!state);
+// };
+// const handleSwitchPlayer = (e) => {
+//   e.preventDefault();
+//   newGame.current.switchPlayer();
+// };

@@ -49,10 +49,14 @@ const ITEMS_PER_PAGE = 4;
 // }
 
 export async function getPokemonsForGames() {
-  const result = await prisma.pokemon.findMany({
-    take: 20,
-  });
-  return result;
+  try {
+    const result = await prisma.pokemon.findMany({
+      take: 20,
+    });
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getFilteredPokemons(

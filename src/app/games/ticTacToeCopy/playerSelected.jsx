@@ -25,7 +25,7 @@ function PlayerSelected({
 
   const activeStyle = ` gap-2 h-20 w-32 flex flex-col justify-around items-center rounded-xl bg-white `;
   const notActiveStyle = ` gap-2 h-20 w-32 flex flex-col justify-around items-center rounded-xl bg-red-300 text-red-200 `;
-
+  // console.log(pokemons);
   const handleSelect = () => {
     setOpen(!open);
   };
@@ -54,31 +54,38 @@ function PlayerSelected({
           />
         </div>
       </div>
-      <button onClick={handleSelect}>Select Character</button>
-      {open && (
-        <ul
-          className="grid grid-cols-2 grid-rows-10 w-full gap-2
-     border-2 border-blue-600 p-4 rounded-xl "
-        >
-          {pokemons.map((p, i) => (
-            <li
-              key={i}
-              className="w-16 h-16 bg-white shadow-md rounded p-2 justify-center flex flex-col items-center hover:bg-yellow-400 cursor-pointer"
-              onClick={() => {
-                handleChoosePokemon(p.name, p.image);
-              }}
-              name={p.name}
+      <div className=" flex flex-col items-center text-center w-48 shadow-xl p-4 rounded-xl bg-white gap-3">
+        {" "}
+        <button onClick={handleSelect}>Select Character</button>
+        {open && (
+          <div>
+            {" "}
+            <ul
+              className="grid grid-cols-2 grid-rows-10 w-full gap-2
+    "
             >
-              <img
-                src={p.image}
-                alt={p.name}
-                className=" max-w-full max-h-full object-cover"
-                // name={pokemon}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
+              {" "}
+              {pokemons?.map((p, i) => (
+                <li
+                  key={i}
+                  className="w-16 h-16 bg-white shadow-md rounded p-2 justify-center flex flex-col items-center hover:bg-yellow-400 cursor-pointer"
+                  onClick={() => {
+                    handleChoosePokemon(p.name, p.image);
+                  }}
+                  name={p.name}
+                >
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className=" max-w-full max-h-full object-cover"
+                    // name={pokemon}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -23,20 +23,30 @@ export class Game {
 
     this.squareData = { image: "" };
     this.squares = Array(9).fill(null);
-    this.winner = "none";
-    this.winningLine = [];
+    this.winnerData = {
+      status: false,
+      player: {
+        player: "none",
+        pokemonName: "",
+        pokemonImage: "",
+        squares: [],
+        color: "white",
+      },
+
+      winningLine: [],
+      message: "wins!!!",
+    };
     this.update = _update;
     // this.selectCharacter = this.selectCharacter.bind(this);
   }
   assignSquare = (number, playerData) => {
-    console.log("playerData.player", playerData);
+    // console.log("playerData.player", playerData);
     this.squares[number] = playerData;
     if (playerData.player === "playerOne") {
       this.playerOne.squares = [...this.playerOne.squares, number + 1];
     } else {
       this.playerTwo.squares = [...this.playerTwo.squares, number + 1];
     }
-    console.log("square", this.squares);
   };
   get currentPlayer() {
     return this.activePlayer;
@@ -46,6 +56,10 @@ export class Game {
   }
   get p1Image() {
     return this.playerOne.pokemonImage;
+  }
+
+  get winnerDataGET() {
+    return this.winnerData;
   }
 
   selectCharacter = (name, image, player) => {
@@ -69,7 +83,8 @@ export class Game {
     this.update();
   };
 
-  calculateWinner = (currPlayer) => {
+  calculateWinner = (currPlayer, checkStatus) => {
+    //"playerOne"
     let playerSquares = [];
     const arr = [
       [1, 2, 3],
@@ -95,16 +110,50 @@ export class Game {
           playerSquares.includes(arr[i][j + 1]) &&
           playerSquares.includes(arr[i][j + 2])
         ) {
-          this.winLine = playerSquares;
-          this.playerWin = this.isPlayerOne; // &fix this
-
-          console.log(currPlayer.pokemonName, "wins!!!"); //& and this
+          this.winnerData.winningLine = arr[i]; //playerSquares;
+          this.winnerData.player = currPlayer; // &fix this
+          this.winnerData.status = true;
+          checkStatus();
+          console.log(this.winnerDataGET);
+          console.log(this.winnerDataGET.player.pokemonName, "wins!!!"); //& and this
         }
       }
     }
   };
+  // this.winnerData = {
+  //   status: false,
+  //   player: {
+  //     player: "none",
+  //     pokemonName: "",
+  //     pokemonImage: "",
+  //     squares: [],
+  //     color: "white",
+  //   },
 
-  reset() {
+  //   winningLine: [],
+  //   message: "wins!!!",
+  // };
+
+  report = () => {};
+
+  playAgain = () => {
+    this.isPlayerOne = true;
+    this.gameStatus = "selectPlayer"; // playing, end
+
+    this.activePlayer = this.playerOne;
+
+    this.squareData = { image: "" };
+    this.squares = Array(9).fill(null);
+    this.winnerData = {
+      status: false,
+      player: "",
+      winningLine: [],
+      message: "wins!!!",
+    };
+
+    this.update();
+  };
+  reset = () => {
     this.isPlayerOne = true;
     this.gameStatus = "selectPlayer"; // playing, end
 
@@ -126,10 +175,15 @@ export class Game {
 
     this.squareData = { image: "" };
     this.squares = Array(9).fill(null);
-    this.winner = "none";
-    this.winningLine = [];
+    this.winnerData = {
+      status: false,
+      player: "",
+      winningLine: [],
+      message: "wins!!!",
+    };
+
     this.update();
-  }
+  };
 }
 
 // const game = new Game();

@@ -5,22 +5,23 @@ export default function Square({
   number,
   name,
   image,
-  playerData,
+  playerData, //playerdata = {player, pokemonName,pokemonImage,squares, color}
   switchPlayer,
   assignSquare,
   calculateWinner,
   color,
+  checkStatus,
 }) {
   // const [name, setName] = useState("");
   // const [image, setImage] = useState("");
-
+  // console.log(playerData);
   const handleClick = (e) => {
     e.preventDefault();
     assignSquare(number, playerData);
     switchPlayer();
-    calculateWinner(playerData);
+    calculateWinner(playerData, checkStatus);
   };
-  console.log(name);
+  // console.log(name);
   const isHidden = name === undefined ? "hidden" : "";
   return (
     <div className=" bg-yellow-500 rounded-md">
