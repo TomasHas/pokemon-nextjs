@@ -35,7 +35,7 @@ export default function Grid({ pokemons }) {
   // console.log("currentPlayer", currentPlayer);
   // console.log(currentPlayer.name);
   return (
-    <div className=" flex flex-row w-screen">
+    <div className=" flex flex-row p-10">
       <div className="">
         <PlayerSelected
           player="playerOne"

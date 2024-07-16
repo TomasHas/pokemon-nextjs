@@ -111,7 +111,7 @@ function FullClientPokemonForm() {
     <div className="flex flex-col md:w-3/4  h-auto ">
       <form className="flex flex-col gap-2 h-screen   " onSubmit={handleSubmit}>
         <div className="flex flex-col items-center justify-center gap-2 p-4  lg:flex-row lg:justify-between ">
-          <div className=" flex flex-col  gap-2 rounded-xl border-2 border-red-600  p-6  lg:w-1/2">
+          <div className=" flex flex-col  gap-2 rounded-xl shadow-2xl bg-white p-6  lg:w-1/2">
             <Input
               name={"name"}
               value={formData.name}
@@ -211,7 +211,7 @@ function FullClientPokemonForm() {
             )}
             <div className=" flex flex-row justify-center items-center">
               <button
-                className=" bg-blue-600 hover:bg-yellow-400 w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer text-white"
+                className=" bg-blue-600 hover:bg-blue-400 w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer text-white"
                 type="submit"
               >
                 Submit
