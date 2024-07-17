@@ -1,7 +1,7 @@
 export class Game {
   constructor(_update) {
     this.isPlayerOne = true;
-    this.gameStatus = "selectPlayer"; // playing, end
+    this.gameStatus = false; // playing, end
 
     this.playerOne = {
       player: "playerOne",
@@ -30,7 +30,7 @@ export class Game {
         pokemonName: "",
         pokemonImage: "",
         squares: [],
-        color: "white",
+        color: "green",
       },
 
       winningLine: [],
@@ -62,6 +62,14 @@ export class Game {
     return this.winnerData;
   }
 
+  changeGameStatus = () => {
+    if (
+      this.playerOne.pokemonName !== "" &&
+      this.playerTwo.pokemonName !== ""
+    ) {
+      this.gameStatus = true;
+    }
+  };
   selectCharacter = (name, image, player) => {
     if (player === "playerOne") {
       this.playerOne.pokemonName = name;
@@ -70,8 +78,11 @@ export class Game {
       this.playerTwo.pokemonName = name;
       this.playerTwo.pokemonImage = image;
     }
-    // console.log(`${name} was selected`);
+    console.log(`${name} was selected`);
+
+    this.changeGameStatus();
     this.update();
+    console.log(this.gameStatus);
   };
 
   switchPlayer = () => {
@@ -181,6 +192,7 @@ export class Game {
       winningLine: [],
       message: "wins!!!",
     };
+    this.gameStatus = false;
 
     this.update();
   };

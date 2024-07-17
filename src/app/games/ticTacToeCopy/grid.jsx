@@ -4,10 +4,12 @@ import Square from "./square";
 import { Game } from "@/app/lib/games/ticTacToeLogic";
 import PlayerSelected from "./playerSelected";
 import WinnerModal from "./WinnerModal";
-import { z } from "zod";
+import StartModal from "./StartModal";
 export default function Grid({ pokemons }) {
   const [state, setState] = useState(true);
   const [open, setOpen] = useState(false);
+  const [selectingPlayerOpen, setSelectingPlayerOpen] = useState(true);
+
   const newGame = useRef(
     new Game(() => {
       setState((prevState) => !prevState);
@@ -28,12 +30,10 @@ export default function Grid({ pokemons }) {
     setOpen(!open);
   };
 
-  const currentPlayer = newGame.current.currentPlayer; //& check if needed for somethign
-
-  const squareColor = currentPlayer.player === "playerOne" ? "red" : "blue";
+  const currentPlayer = newGame.current.currentPlayer;
 
   // console.log("currentPlayer", currentPlayer);
-  // console.log(currentPlayer.name);
+  console.log(newGame.current.gameStatus);
   return (
     <div className=" flex flex-row p-10">
       <div className="">
@@ -44,13 +44,18 @@ export default function Grid({ pokemons }) {
           selectCharacter={newGame.current.selectCharacter}
           selectedCharacterName={newGame.current.p1Name}
           selectedCharacterImage={newGame.current.p1Image}
+          changeGameStatus={newGame.current.changeGameStatus}
         />
       </div>
       <div className="flex flex-col items-center">
         {/* <button onClick={handleState}>toggle state</button> */}
         {/* <button onClick={handleSwitchPlayer}>toggle player</button> */}
         <div className=" relative grid grid-cols-3 gap-2 h-fit p-3">
-          {" "}
+          {!newGame.current.gameStatus && (
+            <div className=" absolute h-full shadow-2xl rounded-md  w-full ">
+              <StartModal />
+            </div>
+          )}
           {open && (
             <div className=" absolute h-full shadow-2xl rounded-md  w-full ">
               <WinnerModal
@@ -71,7 +76,7 @@ export default function Grid({ pokemons }) {
                 image={newGame.current.squares[i]?.pokemonImage}
                 switchPlayer={newGame.current.switchPlayer}
                 calculateWinner={newGame.current.calculateWinner}
-                color={newGame.current.squares[i]?.color}
+                // color={}
                 checkStatus={checkStatus}
               />
             );
@@ -94,12 +99,3 @@ export default function Grid({ pokemons }) {
     </div>
   );
 }
-
-// const handleState = (e) => {
-//   e.preventDefault();
-//   setState(!state);
-// };
-// const handleSwitchPlayer = (e) => {
-//   e.preventDefault();
-//   newGame.current.switchPlayer();
-// };

@@ -19,7 +19,7 @@ export default async function IdStats({ params }) {
   };
 
   return (
-    <div className=" capitalize w-72 h-72 flex flex-col gap-4 border-solid border-red-500 border-2 p-6 rounded-2xl">
+    <div className=" capitalize w-72  flex flex-col gap-4 border-solid shadow-xl  bg-white p-6 rounded-2xl">
       <StatItem name="life" number={pokemon.life} />
       <StatItem name="speed" number={pokemon.speed} />
       <StatItem name="attack" number={pokemon.attack} />

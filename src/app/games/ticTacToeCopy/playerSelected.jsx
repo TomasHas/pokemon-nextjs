@@ -5,7 +5,7 @@ import { useState } from "react";
 function PlayerSelected({
   selectedCharacterName,
   selectedCharacterImage,
-
+  changeGameStatus,
   currentPlayer,
   pokemons,
   player,
@@ -24,7 +24,7 @@ function PlayerSelected({
   // console.log("isPlayerOne", isPlayerOne);
 
   const activeStyle = ` gap-2 h-20 w-32 flex flex-col justify-around items-center rounded-xl bg-white `;
-  const notActiveStyle = ` gap-2 h-20 w-32 flex flex-col justify-around items-center rounded-xl bg-red-300 text-red-200 `;
+  const notActiveStyle = ` gap-2 h-20 w-32 flex flex-col justify-around items-center rounded-xl bg-gray-400 text-white `;
   // console.log(pokemons);
   const handleSelect = () => {
     setOpen(!open);
@@ -33,12 +33,12 @@ function PlayerSelected({
   return (
     <div className=" flex flex-col items-center gap-4 ">
       {/* player component start */}
-      <div className="gap-2 flex flex-col items-center bg-red-500 w-48 h-fit rounded-xl p-3 justify-around">
+      <div className="gap-2 flex flex-col items-center bg-gray-500 w-48 h-fit rounded-xl p-3 justify-around">
         <div
           className={currentPlayer === player ? activeStyle : notActiveStyle}
         >
-          <p className=" bg-yellow-300 px-2 py-1  rounded-xl">{player}</p>
-          <p className=" bg-yellow-300">{selectedCharacterName}</p>
+          <p className=" bg-yellow-300   w-full text-center">{player}</p>
+          <p className=" capitalize">{selectedCharacterName}</p>
         </div>
 
         <div
@@ -54,15 +54,15 @@ function PlayerSelected({
           />
         </div>
       </div>
-      <div className=" flex flex-col items-center text-center w-48 shadow-xl p-4 rounded-xl bg-white gap-3">
+      <div className=" flex flex-col items-center text-center shadow-xl p-4 rounded-xl  bg-white gap-3  ">
         {" "}
         <button onClick={handleSelect}>Select Character</button>
         {open && (
-          <div>
+          <div className="overflow-y-scroll h-72">
             {" "}
             <ul
-              className="grid grid-cols-2 grid-rows-10 w-full gap-2
-    "
+              className="grid grid-cols-2 grid-rows-4 gap-2
+   "
             >
               {" "}
               {pokemons?.map((p, i) => (

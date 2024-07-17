@@ -7,7 +7,7 @@ export default function WinnerModal({ playAgain, winnerData, toggleModal }) {
     toggleModal();
   };
   return (
-    <div className=" relative w-full h-full  rounded-xl flex justify-center items-center  bg-white shadow-2xl  ">
+    <div className=" relative w-full h-full  rounded-xl flex justify-center items-center opacity-90 bg-white shadow-2xl  ">
       <div className="absolute right-5 top-5 ">
         {/* <button className=" capitalize" onClick={toggleModal}>
             close
