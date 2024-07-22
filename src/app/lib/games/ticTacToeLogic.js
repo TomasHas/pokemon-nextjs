@@ -161,7 +161,8 @@ export class Game {
       winningLine: [],
       message: "wins!!!",
     };
-
+    this.playerTwo = { ...this.playerTwo, squares: [] };
+    this.playerOne = { ...this.playerOne, squares: [] };
     this.update();
   };
   reset = () => {

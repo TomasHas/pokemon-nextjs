@@ -83,32 +83,32 @@ function FullClientPokemonForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("handlechange", value);
+    // console.log("handlechange", value);
     setErrors(validateForm({ ...formData, [name]: value }));
 
     if (`!errors.${name}`) {
       setFormData({ ...formData, [name]: value });
     }
   };
-  console.log("formData.length", formData.type.length);
+  // console.log("formData.length", formData.type.length);
 
   const handleSelectChange = (value) => {
-    console.log("handletypes", value);
+    // console.log("handletypes", value);
     // setelectedTypes(e.target.value);
 
     setFormData({ ...formData, ["type"]: value });
   };
 
-  console.log(errors);
-  console.log(formData);
+  // console.log(errors);
+  // console.log(formData);
   const inputStyle =
     "flex flex-row rounded-md h-8 p-2 hover:border-yellow-500 border-2 text-center w-14";
   const errorMessageStyle = " text-red-500 text-xs bg-white";
 
-  const inputContainerStyle = "flex  flex-col justify-between";
-  console.log(formData.type);
+  // const inputContainerStyle = "flex  flex-col justify-between";
+  // console.log(formData.type);
   return (
-    <div className="flex flex-col md:w-3/4  h-auto ">
+    <div className="flex flex-col md:w-3/4  ">
       <form className="flex flex-col gap-2 h-screen   " onSubmit={handleSubmit}>
         <div className="flex flex-col items-center justify-center gap-2 p-4  lg:flex-row lg:justify-between ">
           <div className=" flex flex-col  gap-2 rounded-xl shadow-2xl bg-white p-6  lg:w-1/2">
@@ -211,7 +211,7 @@ function FullClientPokemonForm() {
             )}
             <div className=" flex flex-row justify-center items-center">
               <button
-                className=" bg-blue-600 hover:bg-blue-400 w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer text-white"
+                className=" bg-green-400 hover:bg-green-500 w-full rounded-xl place-items-center p-2 active:bg-green-600 text-center cursor-pointer text-white"
                 type="submit"
               >
                 Submit

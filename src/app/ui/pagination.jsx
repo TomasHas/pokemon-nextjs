@@ -22,7 +22,7 @@ function Pagination({ totalPages }) {
         href={createPageURL(currentPage - 1)}
         isDisabled={currentPage <= 1}
       />
-      <div className="flex ">
+      <div className="lg:flex hidden">
         {allPages.map((page, index) => {
           let position; //"first" | "last" | "single" | "middle" | undefined;
           if (index === 0) position = "first";
@@ -30,13 +30,14 @@ function Pagination({ totalPages }) {
           if (allPages.length === 1) position = "single";
           if (page === "...") position = "middle";
           return (
-            <PaginationNumber
-              key={page}
-              href={createPageURL(page)}
-              page={page}
-              position={position}
-              isActive={currentPage === page}
-            />
+            <div key={page} className="shadow-xl">
+              <PaginationNumber
+                href={createPageURL(page)}
+                page={page}
+                position={position}
+                isActive={currentPage === page}
+              />
+            </div>
           );
         })}
       </div>
@@ -52,12 +53,13 @@ export default Pagination;
 
 function PaginationNumber({ page, href, isActive, position }) {
   const className = clsx(
-    "flex h-10 w-10 items-center justify-center text-sm border rounded-md ",
+    "flex h-10 w-10 items-center  justify-center text-sm border rounded-md ",
     {
       "rounded-md": position === "first" || position === "single",
       "rounded-md": position === "last" || position === "single",
-      "z-10 bg-red-300  text-white": isActive,
-      "hover:bg-red-200 rounded-md": !isActive && position !== "middle",
+      "z-10 bg-red-500  text-white": isActive,
+      "hover:border-red-500 hover:border-2 rounded-md":
+        !isActive && position !== "middle",
       "text-gray-300 rounded-md": position === "middle",
     }
   );
@@ -71,10 +73,10 @@ function PaginationNumber({ page, href, isActive, position }) {
 }
 const PaginationArrow = ({ href, direction, isDisabled }) => {
   const className = clsx(
-    "flex h-10 w-10 items-center justify-center rounded-md border",
+    "flex h-10 w-10 items-center justify-center bg-white rounded-md shadow-xl",
     {
-      "pointer-events-none text-gray-300": isDisabled,
-      "hover:bg-gray-100": !isDisabled,
+      "pointer-events-none text-gray-300 ": isDisabled,
+      "hover:bg-red-400 active:bg-red-500": !isDisabled,
       "mr-2 md:mr-4": direction === "left",
       "ml-2 md:ml-4": direction === "right",
     }

@@ -24,9 +24,9 @@ export default function Square({
   // console.log(name);
   const isHidden = name === undefined ? "hidden" : "";
   return (
-    <div className=" bg-yellow-500 rounded-md">
+    <div className=" bg-blue-500 rounded-md border-white border-2">
       <button
-        className={`flex justify-center items-center h-24 w-24 bg-${color}-600 hover:bg-slate-500 rounded-md`}
+        className={`flex justify-center items-center h-24 w-24 bg-${color}-600 hover:bg-slate-200 rounded-md`}
         onClick={handleClick}
         disabled={image ? true : false}
       >

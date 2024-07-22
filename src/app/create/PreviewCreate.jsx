@@ -11,16 +11,16 @@ export default function PreviewCreate({
 }) {
   const itemContainerStyle = "flex flex-row gap-2 justify-between items-center";
   const itemStyle =
-    "  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex justify-center items-center";
+    "  text-white  bg-green-400 h-5 w-1/2 rounded-md flex justify-center items-center";
   return (
-    <div className="  bg-gray-200 shadow-xl rounded-xlg p-4 h-full w-60 rounded-xl">
-      <div className=" rounded-lg p-4 bg-gray-300  shadow-sm h-36 w-full ">
+    <div className="  bg-green-200 shadow-xl rounded-xlg p-4 h-full w-60 rounded-xl">
+      <div className=" rounded-lg p-4 bg-green-300  shadow-sm h-36 w-full ">
         <img src={image} alt={name} height={40} weight={40} />
       </div>
       <div className=" gap-2 flex flex-col mt-4">
         <div className="flex flex-row  justify-between items-center">
           <div>Name</div>
-          <div className="  text-white  bg-slate-400 h-5 w-1/2 rounded-md flex  justify-center items-center">
+          <div className="  text-white  bg-green-400 h-5 w-1/2 rounded-md flex  justify-center items-center">
             {name}
           </div>
         </div>{" "}

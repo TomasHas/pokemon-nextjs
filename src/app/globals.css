@@ -52,3 +52,11 @@ body {
     transform: translateY(0);
   }
 }
+
+.text-border {
+  position: relative;
+  color: white; /* or any text color */
+  font-weight: bold;
+  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 1px 1px 0 #000;
+}

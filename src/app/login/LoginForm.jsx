@@ -33,10 +33,10 @@ export default function LoginForm() {
 
   console.log(userEmail, userPassword);
   return (
-    <div className=" bg-slate-500 rounded-lg h-full p-4">
+    <div className="   bg-slate-200 rounded-lg p-10">
       <form
         action={dispatch}
-        className=" bg-slate-300 flex flex-col items-center rounded-lg  "
+        className=" flex flex-col items-center rounded-lg  "
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col p-2 gap-2">

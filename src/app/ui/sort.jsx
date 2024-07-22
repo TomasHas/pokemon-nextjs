@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-
+import { MdOutlineSort } from "react-icons/md";
 const liSort =
   "  hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer";
 
@@ -60,13 +60,17 @@ export default function Sort() {
   };
 
   return (
-    <div ref={dropdownRef} className="relative rounded-xl  w-40 cursor-pointer">
+    <div
+      ref={dropdownRef}
+      className="relative rounded-xl  lg:w-40 cursor-pointer"
+    >
       <div className=" flex flex-col items-center gap-2">
         <div
           onClick={handleClick}
-          className=" bg-yellow-300 p-2  rounded-xl flex flex-col items-center w-full"
+          className="  bg-yellow-300 p-2  rounded-xl flex flex-row justify-around items-center lg:w-full"
         >
-          Sort
+          <p className=" hidden md:flex">Sort</p>{" "}
+          <MdOutlineSort className="w-7 h-7" />
         </div>
 
         {isOpen && (

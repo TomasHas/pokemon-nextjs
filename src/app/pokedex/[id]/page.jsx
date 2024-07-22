@@ -15,9 +15,9 @@ export default async function Page({ params }) {
   // console.log(types);
 
   return (
-    <div className=" flex flex-col  items-center justify-center ">
+    <div className=" flex flex-col  items-center p-10 bg-red-500 h-screen">
       <Suspense fallback={<IdSkeleton />}>
-        <div className=" flex flex-col items-center gap-5 mt-10  w-full lg:w-[60%] bg-white p-10 shadow-2xl rounded-xl">
+        <div className=" flex flex-col items-center gap-5   w-full lg:w-[60%] bg-white p-10 shadow-2xl rounded-xl">
           <section className="w-full">
             {" "}
             <div className="w-full flex flex-col  lg:flex-row justify-between lg:items-baseline items-center ">
@@ -35,7 +35,7 @@ export default async function Page({ params }) {
           </section>
 
           <section className="flex flex-col lg:flex-row gap-4 justify-between items-center w-full ">
-            <div className=" h-72 w-72 rounded-xl bg-yellow-100 shadow-xl flex justify-center items-center  ">
+            <div className=" h-full w-72 rounded-xl bg-white shadow-xl flex justify-center items-center  ">
               <img
                 src={pokemon.image}
                 alt={pokemon.name}
@@ -43,7 +43,7 @@ export default async function Page({ params }) {
                 height={200}
               />
             </div>{" "}
-            <div className="  w-72 ">
+            <div className="  w-72  ">
               {" "}
               <IdStats params={params} />
             </div>

@@ -6,7 +6,7 @@ import logo from "./../assets/pokemon landing.png";
 export default async function Page() {
   return (
     <main>
-      <div className=" h-screen w-full bg-yellow-400 ">
+      <div className=" h-screen w-full bg-gradient-to-b from-yellow-400 to-white">
         {" "}
         <Image
           src={logo}

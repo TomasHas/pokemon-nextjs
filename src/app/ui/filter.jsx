@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-
+import { FaFilter } from "react-icons/fa";
+import { MdFilterAlt } from "react-icons/md";
 const liFilter =
   "  hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer";
 
@@ -59,13 +60,17 @@ export default function Filter(types) {
   };
 
   return (
-    <div ref={dropdownRef} className="relative rounded-xl w-40 cursor-pointer">
+    <div
+      ref={dropdownRef}
+      className="relative rounded-xl lg:w-40 cursor-pointer"
+    >
       <div className="flex flex-col gap-2 items-center ">
         <div
           onClick={handleClick}
-          className="bg-blue-300 p-2 rounded-xl flex flex-col items-center w-full "
+          className="bg-blue-300 p-2 rounded-xl flex flex-row justify-around items-center lg:w-full "
         >
-          Filter
+          <p className="hidden md:flex">Filter</p>{" "}
+          <MdFilterAlt className="w-7 h-7" />
         </div>
 
         {isOpen && (

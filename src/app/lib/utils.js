@@ -1,5 +1,3 @@
-import { set } from "zod";
-
 export const generatePagination = (currentPage, totalPages) => {
   // If the total number of pages is 7 or less,
   // display all pages without any ellipsis.

@@ -4,7 +4,7 @@ export default function StatItem({ name, number }) {
     return { width: `${roundedNumber}%` };
   };
   return (
-    <div className=" items-center pr-4 pl-4 rounded-3xl flex flex-row h-6 w-full bg-gray-300  font-bold hover:bg-white ">
+    <div className=" items-center pr-4 pl-4 rounded-3xl flex flex-row h-6 w-full bg-gray-300  font-bold hover:bg-white hover:border-red-500 hover:border-2">
       <div className=" lg:w-[35%] w-[40%]  ">
         <p>{name}</p>
       </div>

@@ -11,15 +11,9 @@ export default function Page() {
   };
 
   return (
-    <div className=" w-screen flex flex-col items-center ">
-      <div
-        className=" 
-      h-80 w-80 mt-4"
-      >
-        <div className="">
-          {" "}
-          <LoginForm />
-        </div>
+    <div className=" h-screen flex flex-col items-center justify-center bg-gray-500 ">
+      <div className="  ">
+        <LoginForm />
       </div>
     </div>
   );
