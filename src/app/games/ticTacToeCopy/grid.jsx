@@ -12,8 +12,8 @@ export default function Grid({ pokemons }) {
   const [state, setState] = useState(true);
   const [open, setOpen] = useState(false);
   const [selectingPlayerOpen, setSelectingPlayerOpen] = useState(true);
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
+  // const searchParams = useSearchParams();
+  // const pathname = usePathname();
   const newGame = useRef(
     new Game(() => {
       setState((prevState) => !prevState);
