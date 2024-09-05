@@ -58,15 +58,15 @@ export default function Loading() {
   return (
     <div
       className=" flex flex-row justify-center items-center h-screen opacity-85"
-      // style={{
-      //   backgroundImage: `url('/pokemon landing.png')`,
-      //   // backgroundColor: "yellow",
-      //   backgroundSize: "contain",
-      //   backgroundPosition: "center",
-      //   height: "90vh", // Adjust as needed
-      //   opacity: "90%",
-      //   backgroundRepeat: "no-repeat"
-      // }}
+      style={{
+        backgroundImage: `url('/pokemon landing.png')`,
+        // backgroundColor: "yellow",
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        height: "90vh", // Adjust as needed
+        opacity: "90%",
+        backgroundRepeat: "no-repeat",
+      }}
     >
       {/* <CardsSkeleton /> */}
       <div
