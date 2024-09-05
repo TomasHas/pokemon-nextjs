@@ -1,55 +1,55 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+// generator client {
+//   provider = "prisma-client-js"
+// }
 
 // datasource db {
 //   provider = "postgresql"
-//   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-//   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+//   url      = env("DATABASE_URL")
 // }
 
-model Pokemon {
-  id      Int    @id @default(autoincrement())
-  number  Int    @unique
-  name    String @unique
-  life    Int
-  speed   Int
-  weight  Int
-  height  Int
-  attack  Int
-  defense Int
-  image   String
+// // datasource db {
+// //   provider = "postgresql"
+// //   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+// //   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+// // }
 
-  type TypesOnPokemon[]
-}
+// model Pokemon {
+//   id      Int    @id @default(autoincrement())
+//   number  Int    @unique
+//   name    String @unique
+//   life    Int
+//   speed   Int
+//   weight  Int
+//   height  Int
+//   attack  Int
+//   defense Int
+//   image   String
 
-model Type {
-  id     Int    @id @default(autoincrement())
-  number Int    @unique
-  name   String @unique
+//   type TypesOnPokemon[]
+// }
 
-  pokemon TypesOnPokemon[]
-}
+// model Type {
+//   id     Int    @id @default(autoincrement())
+//   number Int    @unique
+//   name   String @unique
 
-model TypesOnPokemon {
-  type       Type @relation(fields: [typeNumber], references: [number])
-  typeNumber Int
+//   pokemon TypesOnPokemon[]
+// }
 
-  pokemon       Pokemon @relation(fields: [pokemonNumber], references: [number])
-  pokemonNumber Int
+// model TypesOnPokemon {
+//   type       Type @relation(fields: [typeNumber], references: [number])
+//   typeNumber Int
 
-  @@unique([pokemonNumber, typeNumber])
-}
+//   pokemon       Pokemon @relation(fields: [pokemonNumber], references: [number])
+//   pokemonNumber Int
 
-model User { 
+//   @@unique([pokemonNumber, typeNumber])
+// }
 
-  email String @unique
-  password String 
+// model User { 
 
-}
+//   email String @unique
+//   password String 
+
+// }
 

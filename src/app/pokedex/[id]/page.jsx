@@ -28,7 +28,14 @@ export default async function Page({ params }) {
               <ul className=" flex flex-row gap-4 bg-gray-300 p-3 rounded-xl">
                 <p className=" text-gray-500 font-bold">Type</p>
                 {types.map((e) => (
-                  <li key={e}> {colorType(e)} </li>
+                  <li
+                    key={e}
+                    className={`${colorType(
+                      e
+                    )} pl-2  pr-2 rounded-md capitalize`}
+                  >
+                    {e}
+                  </li>
                 ))}
               </ul>
             </div>

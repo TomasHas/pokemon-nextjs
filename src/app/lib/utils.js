@@ -32,64 +32,56 @@ export const generatePagination = (currentPage, totalPages) => {
 };
 
 export const colorType = (type) => {
-  function setColor(color) {
-    return (
-      <p className={`${color} rounded-lg pl-2 pr-2 capitalize text-white`}>
-        {type}
-      </p>
-    );
-  }
-
   switch (type) {
     case "grass":
-      return setColor("bg-green-500");
+      return "bg-green-500";
 
     case "poison":
-      return setColor("bg-purple-500");
+      return "bg-purple-500";
 
     case "fire":
-      return setColor("bg-orange-500");
+      return "bg-orange-500";
 
     case "normal":
-      return setColor("bg-gray-500");
+      return "bg-gray-500";
 
     case "bug":
-      return setColor("bg-green-800");
+      return "bg-green-800";
 
     case "electric":
-      return setColor("bg-yellow-500");
+      return "bg-yellow-500";
     case "dragon":
-      return setColor("bg-blue-600");
+      return "bg-blue-600";
     case "physical":
-      return setColor("bg-red-500");
+      return "bg-red-500";
     case "fighting":
-      return setColor("bg-red-700");
+      return "bg-red-700";
     case "ground":
-      return setColor("bg-yellow-700");
+      return "bg-yellow-700";
     case "ghost":
-      return setColor("bg-gray-200");
+      return "bg-gray-200";
     case "water":
-      return setColor("bg-blue-300");
+      return "bg-blue-300";
     case "psychic":
-      return setColor("bg-red-400");
+      return "bg-red-400";
     case "dark":
-      return setColor("bg-gray-200");
+      return "bg-gray-200";
     case "unknown":
-      return setColor("bg-green-900");
+      return "bg-green-900";
     case "special":
-      return setColor("bg-blue-800");
+      return "bg-blue-800";
     case "flying":
-      return setColor("bg-blue-200");
+      return "bg-blue-200";
     case "rock":
-      return setColor("bg-yellow-900");
+      return "bg-yellow-900";
     case "steel":
-      return setColor("bg-blue-700");
+      return "bg-blue-700";
     case "ice":
-      return setColor("bg-green-300");
+      return "bg-green-300";
     case "fairy":
-      return setColor("bg-pink-200");
+      return "bg-pink-200";
     default:
-      return setColor("bg-gray-200"); // Default color if type is not matched
+      return "bg-gray-200"; // Default color if type is not matched
   }
 };
 
@@ -162,3 +154,74 @@ export function TicTacToeCalculator(
   calculateWinner(playerTwoSquares);
   // console.log(playerOne, playerTwo);
 }
+
+export const calcBar150 = (value) => {
+  let roundedNumber = Math.floor((value / 150) * 100);
+  return { width: `${roundedNumber}%` };
+};
+
+export const calcBarHeight = (value) => {
+  let roundedNumber = Math.floor((value / 200) * 100);
+
+  return { width: `${roundedNumber}%` };
+};
+
+export const calcBarWeight = (value) => {
+  let roundedNumber = Math.floor((value / 5000) * 100);
+
+  return { width: `${roundedNumber}%` };
+};
+
+// export const colorType = (type) => {
+//   switch (type) {
+//     case "grass":
+//       return setColor("bg-green-500");
+
+//     case "poison":
+//       return setColor("bg-purple-500");
+
+//     case "fire":
+//       return setColor("bg-orange-500");
+
+//     case "normal":
+//       return setColor("bg-gray-500");
+
+//     case "bug":
+//       return setColor("bg-green-800");
+
+//     case "electric":
+//       return setColor("bg-yellow-500");
+//     case "dragon":
+//       return setColor("bg-blue-600");
+//     case "physical":
+//       return setColor("bg-red-500");
+//     case "fighting":
+//       return setColor("bg-red-700");
+//     case "ground":
+//       return setColor("bg-yellow-700");
+//     case "ghost":
+//       return setColor("bg-gray-200");
+//     case "water":
+//       return setColor("bg-blue-300");
+//     case "psychic":
+//       return setColor("bg-red-400");
+//     case "dark":
+//       return setColor("bg-gray-200");
+//     case "unknown":
+//       return setColor("bg-green-900");
+//     case "special":
+//       return setColor("bg-blue-800");
+//     case "flying":
+//       return setColor("bg-blue-200");
+//     case "rock":
+//       return setColor("bg-yellow-900");
+//     case "steel":
+//       return setColor("bg-blue-700");
+//     case "ice":
+//       return setColor("bg-green-300");
+//     case "fairy":
+//       return setColor("bg-pink-200");
+//     default:
+//       return setColor("bg-gray-200"); // Default color if type is not matched
+//   }
+// };

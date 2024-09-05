@@ -6,7 +6,7 @@ import { useState } from "react";
 function Navbar() {
   const pathname = usePathname();
   const currentPath = pathname;
-  console.log(currentPath);
+  // console.log(currentPath);
   const navbarItemStyles =
     " flex flex-row hover:text-white hover:-transition duration-200 items-center h-full justify-center w-full text-center lg:rounded-t-lg  md:h-16  ";
   const [OpenBurger, setOpenBurger] = useState(false);

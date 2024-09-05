@@ -8,18 +8,24 @@ function Card({ name, image, type, number, id }) {
   }
   // console.log(name, Object.entries(type));
   // const types = type.map((e) => e);
-
+  const typeColor = (e) => {
+    return colorType(e);
+  };
   return (
     <div className="  h-fit w-56 flex flex-col items-center rounded-lg  shadow-xl  bg-white p-2 gap-2   hover:border-red-500  transform hover:-translate-y-2 duration-200 ">
       <div className=" ">
         <Link href={`/pokedex/${id}`}>
-          <img
-            src={image}
-            alt={name}
-            width={500}
-            height={500}
-            className=" h-48  p-4 bg-gray-200 rounded-lg hover:bg-red-400"
-          />{" "}
+          {image ? (
+            <img
+              src={image}
+              alt={name}
+              width={500}
+              height={500}
+              className=" h-48 w-48 p-4 bg-gray-200 rounded-lg hover:bg-red-400"
+            />
+          ) : (
+            ""
+          )}
         </Link>
       </div>
       <div className="flex flex-row justify-between w-full  ">
@@ -38,7 +44,13 @@ function Card({ name, image, type, number, id }) {
                 {type?.map((e, i) => (
                   <li key={i}>
                     <h3 className=" text-white w-20 text-center">
-                      {colorType(e)}
+                      <p
+                        className={`${typeColor(
+                          e
+                        )} rounded-lg pl-2 pr-2 capitalize text-white`}
+                      >
+                        {e}
+                      </p>
                     </h3>
                   </li>
                 ))}

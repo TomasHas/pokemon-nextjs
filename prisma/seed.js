@@ -53,6 +53,8 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+
+//&node prisma/seed.js
 // const pokemon = await prisma.pokemon.createMany({
 //   data: apiPokemon.map((p) => ({
 //     name: p.name,

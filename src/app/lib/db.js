@@ -135,7 +135,7 @@ export async function getTypes() {
 }
 
 export async function getPokemonCount(type) {
-  console.log("filterTypecount", filterType);
+  // console.log("filterTypecount", filterType);
   try {
     const count = await prisma.pokemon.count({
       where: {
@@ -205,6 +205,29 @@ export async function getPokemonById(id) {
   try {
     const pokemon = await prisma.pokemon.findUnique({
       where: { id: parseInt(id) },
+      include: {
+        type: {
+          include: {
+            type: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    // console.log(pokemon);
+    return pokemon;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getPokemonByName(name) {
+  try {
+    const pokemon = await prisma.pokemon.findUnique({
+      where: { name: name },
       include: {
         type: {
           include: {

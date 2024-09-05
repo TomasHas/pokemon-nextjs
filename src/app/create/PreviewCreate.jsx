@@ -1,57 +1,58 @@
-export default function PreviewCreate({
-  name,
-  speed,
-  type,
-  life,
-  attack,
-  defense,
-  height,
-  weight,
-  image,
-}) {
-  const itemContainerStyle = "flex flex-row gap-2 justify-between items-center";
+export default function PreviewCreate({ formData }) {
+  const itemContainerStyle =
+    "flex flex-row gap-2 justify-between items-center ";
   const itemStyle =
     "  text-white  bg-green-400 h-5 w-1/2 rounded-md flex justify-center items-center";
   return (
-    <div className="  bg-green-200 shadow-xl rounded-xlg p-4 h-full w-60 rounded-xl">
-      <div className=" rounded-lg p-4 bg-green-300  shadow-sm h-36 w-full ">
-        <img src={image} alt={name} height={40} weight={40} />
+    <div className=" flex flex-col justify-between bg-green-200 shadow-xl h-full  p-4  w-72 rounded-xl">
+      <div className="  rounded-lg p-4 bg-green-300  shadow-sm h-52 w-full ">
+        {formData.image === "" ? (
+          ""
+        ) : (
+          <img
+            src={formData.image}
+            alt={formData.name}
+            className="h-full w-full object-cover rounded-lg"
+            height={40}
+            weight={40}
+          />
+        )}
       </div>
-      <div className=" gap-2 flex flex-col mt-4">
+      <div className=" gap-2 flex flex-col justify-between h-full mt-6">
         <div className="flex flex-row  justify-between items-center">
           <div>Name</div>
           <div className="  text-white  bg-green-400 h-5 w-1/2 rounded-md flex  justify-center items-center">
-            {name}
+            {formData.name}
           </div>
         </div>{" "}
         <div className={itemContainerStyle}>
           <div>Type</div>
-          <div className={itemStyle}>{type}</div>
+          <div className={itemStyle}>{formData.type}</div>
         </div>{" "}
         <div className={itemContainerStyle}>
           <div>Life</div>
-          <div className={itemStyle}>{life}</div>
+          <div className={itemStyle}>{formData.life}</div>
         </div>
         <div className={itemContainerStyle}>
           <div>Speed</div>
 
-          <div className={itemStyle}>{speed}</div>
+          <div className={itemStyle}>{formData.speed}</div>
         </div>{" "}
         <div className={itemContainerStyle}>
           <div>Defense</div>
-          <div className={itemStyle}>{defense}</div>
+          <div className={itemStyle}>{formData.defense}</div>
         </div>
         <div className={itemContainerStyle}>
           <div>Attack</div>
-          <div className={itemStyle}>{attack}</div>
+          <div className={itemStyle}>{formData.attack}</div>
+        </div>{" "}
+        <div className={itemContainerStyle}>
+          <div>Height</div>
+          <div className={itemStyle}>{formData.height}</div>
         </div>
         <div className={itemContainerStyle}>
           <div>Weight</div>
-          <div className={itemStyle}>{weight}</div>
-        </div>
-        <div className={itemContainerStyle}>
-          <div>Height</div>
-          <div className={itemStyle}>{height}</div>
+          <div className={itemStyle}>{formData.weight}</div>
         </div>
       </div>
     </div>

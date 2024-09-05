@@ -2,21 +2,22 @@ import { getPokemonById } from "@/app/lib/db";
 import StatItem from "./StatItem";
 import { Oi } from "next/font/google";
 import "../../globals.css";
+import { calcBarHeight, calcBarWeight } from "@/app/lib/utils";
 export default async function IdStats({ params }) {
   const pokemon = await getPokemonById(params.id);
   // console.log("pokemon", pokemon);
 
-  const calcBarHeight = (value) => {
-    let roundedNumber = Math.floor((value / 200) * 100);
+  // const calcBarHeight = (value) => {
+  //   let roundedNumber = Math.floor((value / 200) * 100);
 
-    return { width: `${roundedNumber}%` };
-  };
+  //   return { width: `${roundedNumber}%` };
+  // };
 
-  const calcBarWeight = (value) => {
-    let roundedNumber = Math.floor((value / 5000) * 100);
+  // const calcBarWeight = (value) => {
+  //   let roundedNumber = Math.floor((value / 5000) * 100);
 
-    return { width: `${roundedNumber}%` };
-  };
+  //   return { width: `${roundedNumber}%` };
+  // };
 
   return (
     <div className=" capitalize w-72  flex flex-col gap-4 border-solid shadow-xl  bg-white p-6 rounded-2xl">

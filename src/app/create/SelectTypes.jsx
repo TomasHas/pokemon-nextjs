@@ -35,7 +35,7 @@ function SelectTypes({ handleChange }) {
         onChange={handleSelectTypes}
         name="type"
         id="type"
-        className="rounded-md h-8 capitalize hover:border-yellow-500 border-2 w-1/2 text-center"
+        className="rounded-md h-8 capitalize hover:border-yellow-500 border-2 w-2/3 text-center"
       >
         {types?.map((type, index) => (
           <option value={type} key={index}>

@@ -20,7 +20,7 @@ export default async function Page({ searchParams }) {
   // console.log(types);
   // console.log("page", sortName, ":", sortValue);
   return (
-    <div className="flex  flex-col items-center p-4 bg-gradient-to-b from-red-500 to-white ">
+    <div className="flex  flex-col h-screen items-center p-4 bg-gradient-to-b from-red-500 to-white ">
       {/* <Loading /> */}
       <div>
         <SortFilterSearch types={types} />

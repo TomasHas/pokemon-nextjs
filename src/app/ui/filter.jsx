@@ -3,14 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { FaFilter } from "react-icons/fa";
-import { MdFilterAlt } from "react-icons/md";
-const liFilter =
-  "  hover:bg-yellow-400 hover:w-full rounded-xl place-items-center p-2 active:bg-yellow-500 text-center cursor-pointer";
 
+import { MdFilterAlt } from "react-icons/md";
+import { colorType } from "../lib/utils";
 export default function Filter(types) {
   const [isOpen, setIsOpen] = useState(false);
-  const [typeChosen, setTypeChosen] = useState("");
+  const [typeColor, setTypeColor] = useState("blue");
   const dropdownRef = useRef(null);
   const type = Object.values(types.types);
   // console.log(type);
@@ -41,7 +39,7 @@ export default function Filter(types) {
   const handleType = (value) => {
     console.log("value", value);
 
-    setTypeChosen(value);
+    setTypeColor(colorType(value));
 
     const filterValue = value;
     const params = new URLSearchParams(searchParams);
@@ -74,14 +72,14 @@ export default function Filter(types) {
         </div>
 
         {isOpen && (
-          <ul className=" shadow-lg z-50 absolute flex flex-col  flex-wrap items-center top-11 bg-white p-4 rounded-xl w-96 max-h-80 ">
+          <ul className=" shadow-lg z-50 absolute flex flex-col mt-2 flex-wrap items-center top-11 bg-white p-4 rounded-xl w-96 max-h-80 ">
             {type[0].map((t, i) => (
               <li
                 key={i}
                 name={t}
                 value={t}
                 onClick={() => handleType(t)}
-                className=" w-24  capitalize hover:bg-yellow-400 hover:w-24 rounded-xl place-items-center p-2 pl-4 pr-4 active:bg-yellow-500 text-center"
+                className={` w-24  capitalize hover:bg-gray-300 hover:w-24 hover:text-white rounded-xl place-items-center p-2 pl-4 pr-4 active:bg-yellow-500 text-center`}
               >
                 {t}
               </li>

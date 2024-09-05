@@ -32,14 +32,15 @@ export async function createPokemon(newPokemon) {
     const result = await prisma.pokemon.create({
       data: {
         ...newPokemon,
-        number: pokemonCount + 1,
+        number: pokemonCount + 1000,
+        name: newPokemon.name,
         life: parseInt(newPokemon.life),
         attack: parseInt(newPokemon.attack),
         defense: parseInt(newPokemon.defense),
         weight: parseInt(newPokemon.weight),
         height: parseInt(newPokemon.height),
         speed: parseInt(newPokemon.speed),
-
+        image: newPokemon.image,
         type: {
           create: newPokemon.type.map((t) => {
             return {
@@ -54,8 +55,10 @@ export async function createPokemon(newPokemon) {
       },
     });
 
+    console.log("Form submitted successfully!");
     return result;
   } catch (error) {
+    console.log("FAILED to Submit Form!");
     console.log(error);
   }
 }
